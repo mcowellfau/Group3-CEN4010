@@ -49,26 +49,16 @@ TABLE OF CONTENTS
 
 	
 
-	Executive Summary………………………..
-	3
-	Overview, Scenarios, and Use Cases …………………………………
-	5
-	Data Definitions …………………………………
-	9
-	Initial List of Functional Specifications …………………………………
-	13
-	List of Non-Functional Specifications …………………………………
-	17
-	Competitive Analysis…………………………………
-	20
-	High-Level System Architecture …………………………………
-	27
-	Task Checklist …………………………………
-	28
-	References …………………………………
-	29
-	Team Roles …………………………………
-	30
+	Executive Summary………………………..3
+	Overview, Scenarios, and Use Cases …………………………………5
+	Data Definitions …………………………………9
+	Initial List of Functional Specifications …………………………………13
+	List of Non-Functional Specifications …………………………………17
+	Competitive Analysis…………………………………20
+	High-Level System Architecture …………………………………27
+	Task Checklist …………………………………28
+	References …………………………………29
+	Team Roles …………………………………30
 	
 
 1. Executive Summary
