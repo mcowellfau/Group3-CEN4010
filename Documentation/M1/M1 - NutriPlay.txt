@@ -444,50 +444,24 @@ Fault Tolerance:
 The analysis of competitors’ web sites will focus on five main features (homepage, design, navigation, search, content, usability) and one additional features (retention). The competitive analysis will utilize a numerical scale (1=bad, 2=poor, 3=fair, 4=good, 5=outstanding) and consists of three websites chosen for their focus on food and activity tracking.
 
 
++=============+===========+==============+=============+=============+
+|             | NutriPlay | MyFitnessPal | MyFoodDiary | Chronometer |
++=============+===========+==============+=============+=============+
+| Homepage:   | N/A       | 4            | 2           | 4           |
++-------------+-----------+--------------+-------------+-------------+
+| Design:     | N/A       | 5            | 1           | 5           |
++-------------+-----------+--------------+-------------+-------------+
+| Navigation: | N/A       | 5            | 4           | 5           |
++-------------+-----------+--------------+-------------+-------------+
+| Search:     | N/A       | 3            | 5           | 5           |
++-------------+-----------+--------------+-------------+-------------+
+| Usability:  | N/A       | 5            | 4           | 3           |
++-------------+-----------+--------------+-------------+-------------+
+| Retention:  | N/A       | 4            | 1           | 3           |
++-------------+-----------+--------------+-------------+-------------+
+|     Mean:   | N/A       | 4.3          | 2.8         | 4.2         |
++=============+===========+==============+=============+=============+
 
-
-
-
-	NutriPlay
-	MyFitnessPal
-	MyFoodDiary
-	Chronometer
-	Homepage:
-	N/A
-	4
-	2
-	4
-	Design:
-	N/A
-	5
-	1
-	5
-	Navigation:
-	N/A
-	5
-	4
-	5
-	Search:
-	N/A
-	3
-	5
-	5
-	Usability:
-	N/A
-	5
-	4
-	3
-	Retention:
-	N/A
-	4
-	1
-	3
-	     Mean:
-	N/A
-	4.3
-	2.8
-	4.2
-	
 
 MyFitnessPal () https://www.myfitnesspal.com/ 
 1. Homepage:
