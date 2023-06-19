@@ -20,7 +20,7 @@
         4. JavaScript (JS) - integrated for client-side functionality purposes, so as to provide an enjoyable and interactive user experience enjoyable
         5. JQuery - employed in conjunction with JS
         6. Bootstrap - provides the framework for NutriPlay’s various web pages 
-        6. Nutritionix API: The Nutritionix API will be used as the core basis NutriPlay, allowing for our NLP functionality, User data lookup, and the like. All nutritional information is garnered from said API’s massive database.
+        7. Nutritionix API: The Nutritionix API will be used as the core basis NutriPlay, allowing for our NLP functionality, User data lookup, and the like. All nutritional information is garnered from said API’s massive database.
 
 
     7. Browser Compatibility:System shall function as a web application, which will operate on all major web browsers for mobile and desktop.
