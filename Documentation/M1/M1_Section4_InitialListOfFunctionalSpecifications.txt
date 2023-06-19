@@ -2,118 +2,121 @@
 
 Non-Member expectations:
 
-        Registering for an Account
+Registering for an Account
 
-1. The system shall allow the user to create an account by defining a custom User ID, password, while also requesting their first name, last name, date of birth, email address, and any/all answers to security and verification questions in the case that they forget their password.
-2. The system shall not allow Visitor to create an account if their specified UserID has been chosen by another User and already exists in System’s database.
-3. Also System shall prevent the user from creating an account if the User’s chosen password does not match the re-enter password field.
-4. System shall require a certain degree of complexity in password entry, so as to ensure User credentials are secured and stored in a manner that is not accessible by malicious actors.
-5. System shall prevent the creation of User’s account if any of the aforementioned fields are not properly filled with information.
+a. The system shall allow the user to create an account by defining a custom User ID, password, while also requesting their first name, last name, date of birth, email address, and any/all answers to security and verification questions in the case that they forget their password.
+b. The system shall not allow Visitor to create an account if their specified UserID has been chosen by another User and already exists in System’s database.
+c. Also System shall prevent the user from creating an account if the User’s chosen password does not match the re-enter password field.
+d. System shall require a certain degree of complexity in password entry, so as to ensure User credentials are secured and stored in a manner that is not accessible by malicious actors.
+e. System shall prevent the creation of User’s account if any of the aforementioned fields are not properly filled with information.
 1. Stimulus/Response Sequence
-1. User enters a User ID
-2. User enters a password
-3. User re-enters password for confirmation
-4. User shall enter their first and last name
-5. User shall enter their date of birth
-6. User shall enter their email address
-7. User shall provide answers to security questions
-8. System shall check if UserID is available
-9. System shall validate password against requirements
-10. System shall store User ID, first name, last name, date of birth, and email address, as well as security question responses
-11. System shall confirm that the account was created by User and send an automated email confirmation
-12. System will automatically redirect the user back to the home page at will
+    a. User enters a User ID
+    b. User enters a password
+    c. User re-enters password for confirmation
+    d. User shall enter their first and last name
+    e. User shall enter their date of birth
+    f. User shall enter their email address
+    g. User shall provide answers to security questions
+    h. System shall check if UserID is available
+    i. System shall validate password against requirements
+    j. System shall store User ID, first name, last name, date of birth, and email address, as well as security question responses
+    k. System shall confirm that the account was created by User and send an automated email confirmation
+    l. System will automatically redirect the user back to the home page at will
 2. Function requirement label
-   1. REQ 1.1 : Registering for an Account
+   a. REQ 1.1 : Registering for an Account
 ________________
 
 
-        Search Through the Food/Exercise Database
+Search Through the Food/Exercise Database
 
-1. Visitor may browse by selecting entering into Search Bar any food or exercise of which they may wish to check the Calorie Count. System shall automatically parse, via the Nutritionix API, Visitor’s plain text entry, e.g., if Visitor enters, “for breakfast I had three eggs,” the Calorie Count and Nutrition Facts regarding three eggs shall be returned, as well as a small picture of an egg to confirm entry via visual cues. Visitor will not be able to log their results, as they are not a registered Member.
+a. Visitor may browse by selecting entering into Search Bar any food or exercise of which they may wish to check the Calorie Count. System shall automatically parse, via the Nutritionix API, Visitor’s plain text entry, e.g., if Visitor enters, “for breakfast I had three eggs,” the Calorie Count and Nutrition Facts regarding three eggs shall be returned, as well as a small picture of an egg to confirm entry via visual cues. Visitor will not be able to log their results, as they are not a registered Member.
 1. Stimulus/Response Sequence
-   1. User sees the Search Bar on the main page of the Website
-   2. User enters their desired query
-   3. System shall parse, via NLP, their entry and attempt to pull up all relevant nutritional information
-   4. Visitor will view said information
-   5. System shall prevent the Visitor from logging any of such information, as they possess Non-Member status
+   a. User sees the Search Bar on the main page of the Website
+   b. User enters their desired query
+   c. System shall parse, via NLP, their entry and attempt to pull up all relevant nutritional information
+   d. Visitor will view said information
+   e. System shall prevent the Visitor from logging any of such information, as they possess Non-Member status
 2. Function requirement label
-   1. REQ 2.1: Search Through the Food/Exercise Database
+   a. REQ 2.1: Search Through the Food/Exercise Database
 ________________
 
 
 View any Additional Resources or Suggest Foods/Exercises to Add
 
-1. System will provide additional information and resources to Visitor, allowing them to view non-searchable information. Additionally, Visitor may provide suggestions regarding additional foods and exercises to incorporate into System.
+a. System will provide additional information and resources to Visitor, allowing them to view non-searchable information. Additionally, Visitor may provide suggestions regarding additional foods and exercises to incorporate into System.
 1. Stimulus/Response Sequence - View Additional Resources
-   1. Visitor clicks on “Additional Resources”
-   2. System shall provide specific Additional Resources, based on Visitor’s location/IP data
-   3. System shall also provide general links, and allow Visitor to submit suggestions for adding to the database
+   a. Visitor clicks on “Additional Resources”
+   b. System shall provide specific Additional Resources, based on Visitor’s location/IP data
+   c. System shall also provide general links, and allow Visitor to submit suggestions for adding to the database
 2. Stimulus/Response Sequence - Suggest New Foods/Exercises
-1. Visitor shall click “suggest/add new information” under “Additional Resources”
-2. Visitor will be prompted for information to add
-3. System shall re-train NLP model and add information to database as necessary
+    a. Visitor shall click “suggest/add new information” under “Additional Resources”
+    b. Visitor will be prompted for information to add
+    c. System shall re-train NLP model and add information to database as necessary
 3. Function requirement label
-   1. REQ 3.1: View Additional Resources
-   2. REQ 3.2: Suggest New Foods/Exercises
+   a. REQ 3.1: View Additional Resources
+   b. REQ 3.2: Suggest New Foods/Exercises
 ________________
 
 
 About Us
 
-1. System provides information to Visitor about the functionality that can benefit prospective User and reasons for registration to Member status. System also provides information about this project, the Nutritionix API, and how their information is processed/stored/used. 
+a. System provides information to Visitor about the functionality that can benefit prospective User and reasons for registration to Member status. System also provides information about this project, the Nutritionix API, and how their information is processed/stored/used. 
 1. Stimulus/Response Sequence
-   1. Visitor uses the navigation bar and clicks “About us”
-   2. Visitor is redirected to About us page
-   3. Visitor sees links about relevant information at the top of the page
-   4. Visitor sees our Mission Statement, privacy and security promises, and Nutritionix API information
-   5. Visitor is provided with the opportunity to register for Member status
+   a. Visitor uses the navigation bar and clicks “About us”
+   b. Visitor is redirected to About us page
+   c. Visitor sees links about relevant information at the top of the page
+   d. Visitor sees our Mission Statement, privacy and security promises, and Nutritionix API information
+   e. Visitor is provided with the opportunity to register for Member status
 2. 4.3 Function requirement label
-   1. REQ 4.1 About Us
+   a. REQ 4.1 About Us
 ________________
 
 
 Member Expectations:
+
 Edit User Profile
-1. Users shall be able to edit their profile by changing their provided first and last name, date of birth, and email address. Users may also add or modify their security questions. Users further may view their Experience Bar, and receive messages of encouragement. System shall store all updated information upon pressing the “Save Changes” button. System shall prevent any changes to any User’s profile if any fields are left blank. Users must provide the information in a valid format meeting aforementioned requirements in order for the system to store the information.
+a. Users shall be able to edit their profile by changing their provided first and last name, date of birth, and email address. Users may also add or modify their security questions. Users further may view their Experience Bar, and receive messages of encouragement. System shall store all updated information upon pressing the “Save Changes” button. System shall prevent any changes to any User’s profile if any fields are left blank. Users must provide the information in a valid format meeting aforementioned requirements in order for the system to store the information.
 1. Stimulus/Response Sequence
-   1. User will navigate to their Profile Page and a drop down menu will be activated
-   2. User will click on edit profile
-   3. User will change their provided first and last name, date of birth, or email address
-   4. User shall click “Save Changes”
-   5. System shall store their updated information
-   6. System shall refresh webpage to User’s profile, now containing updated information
+   a. User will navigate to their Profile Page and a drop down menu will be activated
+   b. User will click on edit profile
+   c. User will change their provided first and last name, date of birth, or email address
+   d. User shall click “Save Changes”
+   e. System shall store their updated information
+   f. System shall refresh webpage to User’s profile, now containing updated information
 2. Function requirement label
-   1. REQ 5.1: Edit User Profile
+   a. REQ 5.1: Edit User Profile
 ________________
 
 
 Add a Food/Activity to User Log
-1. Users will search for their consumed food or performed activity and have the ability to add the selected food or activity to their log. The system will prevent the user from adding to their log if the user has not registered an account or logged in. Any Users must be members and be logged in if they wish to add a food or activity to their log.
+
+a. Users will search for their consumed food or performed activity and have the ability to add the selected food or activity to their log. The system will prevent the user from adding to their log if the user has not registered an account or logged in. Any Users must be members and be logged in if they wish to add a food or activity to their log.
 1. Stimulus/Response Sequence
-   1. User will use the search function for a specific food/activity
-   2. User will select their food/activity
-   3. User will click the “Add Food/Activity to Log”
-   4. User may search for, select, and add more food/activities if desired
-   5. User will click “Confirm”
-   6. System shall save the selected food/activity to the user’s calorie log
-   7. System shall recalculate all totals and show the user their updated experience bar
-   8. System shall provide a button to redirect the user back to the home page
+   a. User will use the search function for a specific food/activity
+   b. User will select their food/activity
+   c. User will click the “Add Food/Activity to Log”
+   d. User may search for, select, and add more food/activities if desired
+   e. User will click “Confirm”
+   f. System shall save the selected food/activity to the user’s calorie log
+   g. System shall recalculate all totals and show the user their updated experience bar
+   h. System shall provide a button to redirect the user back to the home page
 2. Function requirement label
-   1. REQ 6.1: Add a Food/Activity to Log
+   a. REQ 6.1: Add a Food/Activity to Log
 ________________
 
 
 View/Modify/Track Experience Bar and Calorie Count
-2. Users will be able to view and track the movement of their Experience Bar as they log their calorie intake and exercise throughout the day. As User offsets Calories consumed with Exercise, their bar shall change and move, like that of a videogame. They will be given objectives and rewards for meeting certain goals, again reflecting the video game-like nature of NutriPlay.
+
+b. Users will be able to view and track the movement of their Experience Bar as they log their calorie intake and exercise throughout the day. As User offsets Calories consumed with Exercise, their bar shall change and move, like that of a videogame. They will be given objectives and rewards for meeting certain goals, again reflecting the video game-like nature of NutriPlay.
 5. Stimulus/Response Sequence
-   1. User will use the search function for a specific food/activity
-   2. User will select their food/activity
-   3. User will click the “Add Food/Activity to Log”
-   4. User may search for, select, and add more food/activities if desired
-   5. User will click “Confirm”
-   6. System shall save the selected food/activity to the user’s calorie log
-   7. System shall recalculate all totals and show the user their updated Experience Bar
-   8. System shall provide feedback based on User’s performance as displayed on the Experience Bar
-   9. User may offset any Calories consumed with Activities or Exercise in a similar manner
+   a. User will use the search function for a specific food/activity
+   b. User will select their food/activity
+   c. User will click the “Add Food/Activity to Log”
+   d. User may search for, select, and add more food/activities if desired
+   e. User will click “Confirm”
+   f. System shall save the selected food/activity to the user’s calorie log
+   g. System shall recalculate all totals and show the user their updated Experience Bar
+   h. System shall provide feedback based on User’s performance as displayed on the Experience Bar
+   i. User may offset any Calories consumed with Activities or Exercise in a similar manner
 6. Function requirement label
-   1. REQ 7.1: View/Modify/Track Experience Bar and Calorie Count
+   a. REQ 7.1: View/Modify/Track Experience Bar and Calorie Count
