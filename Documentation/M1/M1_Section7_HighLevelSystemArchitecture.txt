@@ -1,0 +1,26 @@
+7. High-level system architecture
+
+
+    1. Firebase CDN: Firebase shall form the basis for NutriPlay’s Content Delivery Network (“CDN”), and will provide all database, authentication, security, logging, and other such measures and support tools.
+
+
+    2. GitHub: GitHub will host the team collaborative repository, allowing for the developers to share, collaborate, and code together, whilst tracking all changes and providing history/backups.
+
+
+    3. Google Docs: Google Docs is an online text editor that shall be used on an individual and collaborative basis to write some of the documentation for pre-processing and uploading to GitHub.
+
+
+    4. Firebase Firestore: The Firebase Firestore shall provide the functionality otherwise traditionally implemented via MySQL. It shall form the basis of our backend design, and allow us to track, store, and monitor all data related to NutriPlay and its User base.
+
+
+    5. Visual Studio Code (Text Editor and Pseudo-IDE): Visual Studio Code shall be employed to create NutriPlay website and handle most of the front- and backend programming. Languages to be used for the development of the website will be the following
+        1. HyperText Markup Language 5 (HTML5) - creates the physical website layout
+        2. Cascading Style Sheets 3 (CSS3) - provides stylesheets and aesthetics for the website
+        3. Personal Home Page (PHP) - used for server-side functionality, but mostly used via Firebase CDN
+        4. JavaScript (JS) - integrated for client-side functionality purposes, so as to provide an enjoyable and interactive user experience enjoyable
+        5. JQuery - employed in conjunction with JS
+        6. Bootstrap - provides the framework for NutriPlay’s various web pages 
+        6. Nutritionix API: The Nutritionix API will be used as the core basis NutriPlay, allowing for our NLP functionality, User data lookup, and the like. All nutritional information is garnered from said API’s massive database.
+
+
+    7. Browser Compatibility:System shall function as a web application, which will operate on all major web browsers for mobile and desktop.
