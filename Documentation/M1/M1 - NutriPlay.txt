@@ -1,48 +1,3 @@
-﻿Ideas:
-* Calorie Counter/Food Log
-* Parts of Template:
-   * Nutrition API - https://api-ninjas.com/api/nutrition
-   * AI Image Generation - https://deepai.org/machine-learning-model/text2img 
-   * Calories Burned API - https://api-ninjas.com/api/caloriesburned 
-   * Nutritionix - https://www.nutritionix.com/business/api 
-   * Food Diary - Bootstrap Template?
-      * Add a Meal
-      * Add objects/food
-      * Keep adding however many throughout the day
-      * XP/Calorie Bar - fills as you add food
-   * Login
-      * Create an Acct
-      * Non-user functionality
-         * Get info about food, but login to track
-      * Addt’l Resources - Dieticians/Celeb Chefs/Recipes
-      * TDEE Generator - calculate expected calories based on activity level
-         * Just enter calories burned today - many machines/apple watch track this
-
-
-Priority List:
-
-
-Top Priority
-* Login and Information Storage - Database/Backend
-* Develop fields for user input/info
-   * how to enter info
-* Nutritionix API incorporation
-
-
-Medium Priority
-* Food diary
-* Nutritionix Calorie/Workout stuff
-* Calorie/XP Bar thing
-
-
-Low Priority
-* Net calories burned
-* Calorie differential
-* Game-like aspects
-
-
-
-
 SW Engineering Summer 2023
 [FAU: CEN 4010]
 
@@ -94,26 +49,16 @@ TABLE OF CONTENTS
 
 	
 
-	Executive Summary………………………..
-	3
-	Overview, Scenarios, and Use Cases …………………………………
-	5
-	Data Definitions …………………………………
-	9
-	Initial List of Functional Specifications …………………………………
-	13
-	List of Non-Functional Specifications …………………………………
-	17
-	Competitive Analysis…………………………………
-	20
-	High-Level System Architecture …………………………………
-	27
-	Task Checklist …………………………………
-	28
-	References …………………………………
-	29
-	Team Roles …………………………………
-	30
+	Executive Summary………………………..3
+	Overview, Scenarios, and Use Cases …………………………………5
+	Data Definitions …………………………………9
+	Initial List of Functional Specifications …………………………………13
+	List of Non-Functional Specifications …………………………………17
+	Competitive Analysis…………………………………20
+	High-Level System Architecture …………………………………27
+	Task Checklist …………………………………28
+	References …………………………………29
+	Team Roles …………………………………30
 	
 
 1. Executive Summary
