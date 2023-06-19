@@ -2,23 +2,23 @@
 6. Competitive Analysis
 
 The analysis of competitors’ web sites will focus on five main features (homepage, design, navigation, search, content, usability) and one additional features (retention). The competitive analysis will utilize a numerical scale (1=bad, 2=poor, 3=fair, 4=good, 5=outstanding) and consists of three websites chosen for their focus on food and activity tracking.
-    +=============+===========+==============+=============+=============+
-    |             | NutriPlay | MyFitnessPal | MyFoodDiary | Chronometer |
-    +=============+===========+==============+=============+=============+
-    | Homepage:   | N/A       | 4            | 2           | 4           |
-    +-------------+-----------+--------------+-------------+-------------+
-    | Design:     | N/A       | 5            | 1           | 5           |
-    +-------------+-----------+--------------+-------------+-------------+
-    | Navigation: | N/A       | 5            | 4           | 5           |
-    +-------------+-----------+--------------+-------------+-------------+
-    | Search:     | N/A       | 3            | 5           | 5           |
-    +-------------+-----------+--------------+-------------+-------------+
-    | Usability:  | N/A       | 5            | 4           | 3           |
-    +-------------+-----------+--------------+-------------+-------------+
-    | Retention:  | N/A       | 4            | 1           | 3           |
-    +-------------+-----------+--------------+-------------+-------------+
-    |     Mean:   | N/A       | 4.3          | 2.8         | 4.2         |
-    +=============+===========+==============+=============+=============+
++=============+===========+==============+=============+=============+
+|             | NutriPlay | MyFitnessPal | MyFoodDiary | Chronometer |
++=============+===========+==============+=============+=============+
+| Homepage:   | N/A       | 4            | 2           | 4           |
++-------------+-----------+--------------+-------------+-------------+
+| Design:     | N/A       | 5            | 1           | 5           |
++-------------+-----------+--------------+-------------+-------------+
+| Navigation: | N/A       | 5            | 4           | 5           |
++-------------+-----------+--------------+-------------+-------------+
+| Search:     | N/A       | 3            | 5           | 5           |
++-------------+-----------+--------------+-------------+-------------+
+| Usability:  | N/A       | 5            | 4           | 3           |
++-------------+-----------+--------------+-------------+-------------+
+| Retention:  | N/A       | 4            | 1           | 3           |
++-------------+-----------+--------------+-------------+-------------+
+|     Mean:   | N/A       | 4.3          | 2.8         | 4.2         |
++=============+===========+==============+=============+=============+
 MyFitnessPal (4.3) https://www.myfitnesspal.com/ 
     1. Homepage:
         The myfitnesspal homepage is rudimentary in principle. The main homepage features a section called “Your Daily Summary”. In this section, users have access to the number of calories they are allotted per day. This daily caloric allotment is calculated from the weight and height a user inputs upon registration with the site. Users may then update their summary with any foods they’ve consumed or exercise they’ve completed throughout the day. A progress bar denotes the number of calories consumed thus far and fills up based on the calories contained in each food item consumed. Similarly, calories burned from exercise are subtracted from the total calories consumed. A news feed located below the summary makes up the rest of the homepage. Here, users may share their status with other members of myfitnesspal similar to that of a blogpost. 
