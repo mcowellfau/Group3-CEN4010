@@ -1,0 +1,11 @@
+8. Task Checklist
+
+
+1. Team decided on basic means of communications - DONE
+2. Team found a time slot to meet outside of the class - DONE
+3. Front and back end team leads chosen - DONE
+4. Github master chosen - DONE
+5. Team ready and able to use the chosen back and front-end frameworks - DONE
+6. Skills of each team member defined and known to all - DONE
+7. Team lead ensured that all team members read the final M1 and - DONE
+8. agree/understand it before submission - DONE
