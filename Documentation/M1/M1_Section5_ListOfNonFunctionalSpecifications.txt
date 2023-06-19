@@ -1,47 +1,47 @@
 7. List of non-functional specs
-High-Level Performance Requirements:
-1. Responsiveness: System shall be responsive, operating on various screen sizes and at various resolutions, ranging from smartphones to desktop monitors.
-2. Cycle Time: The cycle time at expected performance will be 1.0. With this in mind, System may operate at a variable performance of between 1.0 - 1.2 with a load of 10 or more Users or Visitors. Cycle time shall increase by approximately 0.2 seconds per every 10 users.
-3. Speed Per Transaction: The speed per transaction will be between 20-100 milliseconds, depending on the Cycle Time. The system will process approximately 10-50 transactions per second.
-4. Test Requirements: The test requirements for performance will include an expected load test as well as testing on all of the functional specs listed and their speed per transaction. The testing shall also consider edge cases, such as Users inputting data that is unable to be processed by the NLP model via the Nutritionix API.
-5. Reliability: The mean time between failures is such that NutriPlay shall have approximately one (1) hour or less of downtime throughout the operational deployment of the web application, presumably the first three (3) to six (6) months following completion of this project. This downtime can be used to perform maintenance and update information, as well as to inspect the integrity of the Firestore database.
-6. Minimum Bug Counts:
-We anticipate the following:
-   1. No more than five (5) bugs in the system during integration and testing.
-   2. No more than three (3) bugs can remain in the system after delivery.
-7. Execution Speed: Execution speed should be such that the initial home page should load within 100-200 milliseconds on a modern broadband connection (~100MB/s).
-8. Storage Utilization: Storage utilization should be within reason, provided as such by the Firestore database and other such backend solutions.
-9. Robustness: The time needed to restart after a failure should be under one (1) hour. 
-Ease of Use:
-1. Learning Curve: The learning curve for Non-Members and Members alike should be minimal, so as to enable easy use of the web application and fulfillment of any User’s goals.
-________________
+   High-Level Performance Requirements:
+      1. Responsiveness: System shall be responsive, operating on various screen sizes and at various resolutions, ranging from smartphones to desktop monitors.
+      2. Cycle Time: The cycle time at expected performance will be 1.0. With this in mind, System may operate at a variable performance of between 1.0 - 1.2 with a load of 10 or more Users or Visitors. Cycle time shall increase by approximately 0.2 seconds per every 10 users.
+      3. Speed Per Transaction: The speed per transaction will be between 20-100 milliseconds, depending on the Cycle Time. The system will process approximately 10-50 transactions per second.
+      4. Test Requirements: The test requirements for performance will include an expected load test as well as testing on all of the functional specs listed and their speed per transaction. The testing shall also consider edge cases, such as Users inputting data that is unable to be processed by the NLP model via the Nutritionix API.
+      5. Reliability: The mean time between failures is such that NutriPlay shall have approximately one (1) hour or less of downtime throughout the operational deployment of the web application, presumably the first three (3) to six (6) months following completion of this project. This downtime can be used to perform maintenance and update information, as well as to inspect the integrity of the Firestore database.
+      6. Minimum Bug Counts:
+      We anticipate the following:
+         1. No more than five (5) bugs in the system during integration and testing.
+         2. No more than three (3) bugs can remain in the system after delivery.
+      7. Execution Speed: Execution speed should be such that the initial home page should load within 100-200 milliseconds on a modern broadband connection (~100MB/s).
+      8. Storage Utilization: Storage utilization should be within reason, provided as such by the Firestore database and other such backend solutions.
+      9. Robustness: The time needed to restart after a failure should be under one (1) hour. 
+      Ease of Use:
+      10. Learning Curve: The learning curve for Non-Members and Members alike should be minimal, so as to enable easy use of the web application and fulfillment of any User’s goals.
+
 
 
 Interoperability Requirements:
-1. Browser Compatibility: System will be a web-based application, which shall operate on all major Internet browsers, including Google Chrome, Mozilla Firefox, Safari, and Microsoft Edge. 
-2. Computer and OS Compatibility: System will have interoperable features, allowing for cross-platform and OS compatibility.
+   1. Browser Compatibility: System will be a web-based application, which shall operate on all major Internet browsers, including Google Chrome, Mozilla Firefox, Safari, and Microsoft Edge. 
+   2. Computer and OS Compatibility: System will have interoperable features, allowing for cross-platform and OS compatibility.
 Expected Load:
-1. We will provision for as many Visitors and Users as possible, given our backend resources; presumably, this shall fall around the approximate mark of fifty (50) persons. 
-Security Requirements:
-1. Login/Password System: System shall possess a login/password authentication process. This implementation will also require a password confirmation upon creation. User will also create answers for Security Questions that shall be stored in the database. User will be able to retrieve their password by providing the answer to such questions.
-2. Encryption: The website will not provide any SSL/TLS encryption, as no transactions are being processed.
-3. Access Control: Users and Visitors will have limited access to System based solely on the user interface.
-4. Spam Protection: The site will implement Captcha protections during the process to create an account, thereby preventing the creation of bogus accounts.
-5. Resource Utilization: Resources such as Firebase CDN shall be employed for backend design and hosting. The system will utilize Bootstrap and JavaScript/JQuery and will document proper licenses and/or qualifications of each.
+   1. We will provision for as many Visitors and Users as possible, given our backend resources; presumably, this shall fall around the approximate mark of fifty (50) persons. 
+   Security Requirements:
+   1. Login/Password System: System shall possess a login/password authentication process. This implementation will also require a password confirmation upon creation. User will also create answers for Security Questions that shall be stored in the database. User will be able to retrieve their password by providing the answer to such questions.
+   2. Encryption: The website will not provide any SSL/TLS encryption, as no transactions are being processed.
+   3. Access Control: Users and Visitors will have limited access to System based solely on the user interface.
+   4. Spam Protection: The site will implement Captcha protections during the process to create an account, thereby preventing the creation of bogus accounts.
+   5. Resource Utilization: Resources such as Firebase CDN shall be employed for backend design and hosting. The system will utilize Bootstrap and JavaScript/JQuery and will document proper licenses and/or qualifications of each.
 Portability Requirements:
-1. Platform Compatibility: The system shall function on all personal computers and platforms, including mobile devices such as smartphones or tablets.
+   1. Platform Compatibility: The system shall function on all personal computers and platforms, including mobile devices such as smartphones or tablets.
 Supportability Requirements:
-1. Coding Standards: Our system will employ HTML5, CSS3, JavaScript, Firebase CDN version 8, and other such modern, up-to-date languages, codebases, and APIs.
-2. Naming Conventions: Standard programming language conventions shall be adhered to throughout the design and development process.
+   1. Coding Standards: Our system will employ HTML5, CSS3, JavaScript, Firebase CDN version 8, and other such modern, up-to-date languages, codebases, and APIs.
+   2. Naming Conventions: Standard programming language conventions shall be adhered to throughout the design and development process.
 Storage Requirements:
-1. Database: Our system shall primarily support the Firebase CDN Firestore database, and will utilize all available storage to the best of its capacities.
+   1. Database: Our system shall primarily support the Firebase CDN Firestore database, and will utilize all available storage to the best of its capacities.
 
 
 Survivability and Availability:
-1. Cloud Storage Basis: System shall be entirely cloud based, so as to ensure high survivability, constant availability, and minimal downtime.
+   1. Cloud Storage Basis: System shall be entirely cloud based, so as to ensure high survivability, constant availability, and minimal downtime.
 Availability Requirements:
-1. Accessible Times: System shall be available for use 24/7/365.
-2. Downtime Impact: The downtime will be minimal. When necessary, a splash page will be used to identify such that System is in maintenance. 
-3. Support: Support shall be available by email. 
+   1. Accessible Times: System shall be available for use 24/7/365.
+   2. Downtime Impact: The downtime will be minimal. When necessary, a splash page will be used to identify such that System is in maintenance. 
+   3. Support: Support shall be available by email. 
 Fault Tolerance:
-1. Exception Handling: There will be exception handling provided in all situations where an exception could occur. User will receive feedback with an explanation as to why exceptions have occurred. Steps to ameliorate such exceptions may be provided in the form of alerts or Bootstrap Modals.
+   1. Exception Handling: There will be exception handling provided in all situations where an exception could occur. User will receive feedback with an explanation as to why exceptions have occurred. Steps to ameliorate such exceptions may be provided in the form of alerts or Bootstrap Modals.
