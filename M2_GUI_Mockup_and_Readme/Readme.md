@@ -32,3 +32,5 @@ on the final product.
 All other information is consistent with our Milestone 1 Documentation. All of the Milestone 1
 Documentation has been updated accordingly to any added features. Modified features are reflected
 here.
+
+To view the PDF in VSCode, please use the vscode-pdf extension.
