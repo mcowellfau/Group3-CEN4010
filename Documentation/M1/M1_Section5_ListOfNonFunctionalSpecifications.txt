@@ -23,7 +23,7 @@ Interoperability Requirements:
 Expected Load:
    1. We will provision for as many Visitors and Users as possible, given our backend resources; presumably, this shall fall around the approximate mark of fifty (50) persons. 
    Security Requirements:
-   1. Login/Password System: System shall possess a login/password authentication process. This implementation will also require a password confirmation upon creation. User will also create answers for Security Questions that shall be stored in the database. User will be able to retrieve their password by providing the answer to such questions.
+   1. Login/Password System: System shall possess a login/password authentication process done through traditional username/password or through a Google and Facebook login/signup option. This implementation will also require a password confirmation upon creation (ignored if done through Google or Facebook). User will also create answers for Security Questions that shall be stored in the database. User will be able to retrieve their password by providing the answer to such questions.
    2. Encryption: The website will not provide any SSL/TLS encryption, as no transactions are being processed.
    3. Access Control: Users and Visitors will have limited access to System based solely on the user interface.
    4. Spam Protection: The site will implement Captcha protections during the process to create an account, thereby preventing the creation of bogus accounts.
