@@ -16,4 +16,4 @@ Product Owner, Backend Developer: Josh Young
 
 # Readme Information For Milestone 2
 
-Updated milestone 1 non-functional requirements. For the complete milestone 2 readme, see the GUI_Mockup_and_Readme's readme file.
+Updated milestone 1 non-functional requirements. For the complete milestone 2 readme, see the M2/GUI_Mockup_and_Readme's readme file.
