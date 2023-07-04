@@ -1,4 +1,4 @@
-Readme Information For Milestone 2
+# Readme Information For Milestone 2
 
 Most of the representations and information from Milestone 1's documentation are consistent
 with the current wireframes attached here. We have, however, elected to make the following
