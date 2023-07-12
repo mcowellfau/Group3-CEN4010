@@ -134,6 +134,20 @@
     background-color: red !important; 
   }
 
+  .deficit {
+    background-color: gold !important;
+  }
+  
+  .deficit-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: gold;
+    width: 0;
+    transition: width 0.3s ease-in-out;
+  }  
+
   h1 {
     display: inline-block;
     border-bottom: 1px solid #ccc;
