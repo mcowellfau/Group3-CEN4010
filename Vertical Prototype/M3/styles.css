@@ -57,12 +57,22 @@
     display: none;
   }
   
-  #container {
+  #food_container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
   }
+
+  #exercise_container {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+
+
   
   #searchForm {
     display: flex;
