@@ -119,3 +119,67 @@ function updateCaloriesProgressBar(calories) {
         $('#caloriesBar').removeClass('full');
     }
 }
+
+$(document).ready(function() {
+  $('#exerciseForm').submit(function(event) {
+    event.preventDefault();
+
+    var searchTerm = $('#exerciseInput').val();
+
+    $.ajax({
+      url: 'https://trackapi.nutritionix.com/v2/natural/exercise',
+      type: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-app-id': '829b344f',
+        'x-app-key': 'fc998f3f193cf70fcf5964765bfe50e8',
+      },
+      data: JSON.stringify({
+        query: searchTerm,
+      }),
+      success: function(exerciseResponse) {
+        // Clear previous search results
+        $('#exerciseResults').empty();
+
+        // Create a table for exercise items
+        var exerciseTable = $('<table>').addClass('searchTable');
+
+        // Create and append table headers
+        var exerciseHeaders = ['Exercise', 'Duration (min)', 'Calories Burned'];
+        var exerciseHeaderRow = $('<tr>');
+        exerciseHeaders.forEach(function(header) {
+          exerciseHeaderRow.append($('<th>').text(header));
+        });
+        exerciseTable.append(exerciseHeaderRow);
+
+        // Calculate the total burned calories
+        var totalBurnedCalories = 0;
+
+        // Iterate through each exercise item and create table rows
+        exerciseResponse.exercises.forEach(function(exercise) {
+          var row = $('<tr>');
+          row.append($('<td>').text(exercise.name));
+          row.append($('<td>').text(exercise.duration_min));
+          row.append($('<td>').text(exercise.nf_calories));
+
+          exerciseTable.append(row);
+
+          // Update the total burned calories
+          totalBurnedCalories += exercise.nf_calories;
+        });
+
+        // Subtract the burned calories from the total
+        var currentCalories = parseFloat($('#caloriesText').text().split('/')[0]);
+        var remainingCalories = currentCalories - totalBurnedCalories;
+        updateCaloriesProgressBar(remainingCalories);
+
+        // Append the exercise table to the search results div
+        $('#exerciseResults').append(exerciseTable);
+      },
+      error: function(xhr, status, error) {
+        console.error('Error:', error);
+        alert('Exercise not found!');
+      },
+    });
+  });
+});
