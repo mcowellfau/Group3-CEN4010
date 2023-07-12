@@ -104,6 +104,22 @@ $(document).ready(function() {
         },
       });
     });
+    $('#clearButton').click(function() {
+      clearCaloriesBar();
+    });
+    function clearCaloriesBar() {
+      updateCaloriesProgressBar(0);
+      clearTables();
+      clearSearchBars();
+    }
+    function clearTables() {
+      $('#searchResults').empty();
+      $('#exerciseResults').empty();
+    }
+    function clearSearchBars() {
+      $('#searchInput').val('');
+      $('#exerciseInput').val('');
+    }
   });
   
 // Update the calories progress bar
