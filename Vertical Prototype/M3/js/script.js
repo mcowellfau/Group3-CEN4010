@@ -155,5 +155,5 @@ $(document).ready(function(){
 
 const home = document.getElementById('homeButton');
 home.addEventListener('click', function() {
-  window.location.href = '..'
+  window.location.href = 'index.html'
 });
