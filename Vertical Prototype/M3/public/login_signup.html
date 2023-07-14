@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Login and Signup</title>
+        <meta name="description" content="allows user to login or signup">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <div id="emailPassFields">
+            <p class="signupOpt h2">Complete your sign up</p>
+            <p class="loginOpt h2">Login to your account</p>
+            <p class="lead">Enter an email and password</p>
+            <div class="form-floating">
+                <input type="email" id="email" placeholder="email" class="form-control" required>
+                <label for="email">Email:</label>
+            </div>
+            <div class="form-floating ">
+                <input type="password" id="password" placeholder="password" class="form-control" required>
+                <label for="password">Password:</label>
+            </div>
+            <div>
+                <button id="signup" class="signupOpt btn btn-success">Sign Up</button>
+                <button id="login" class="loginOpt btn btn-success">Login</button>
+            </div>
+            <p class="switch signupOpt stLogin">Already a member? Click here to login!</p>
+            <p class="switch loginOpt stSignup">Not a member yet? Click here to sign up!</p>
+        </div>
+        <form id="userInfoFields">
+            <p class="h2">Create your account</p>
+            <p class="lead">Enter your personal information</p>
+            <div class="form-floating">
+                <input type="text" id="name" placeholder="name" class="form-control" required>
+                <label for="name">Name:</label>
+            </div>
+            <div class="form-floating">
+                <input type="date" id="dob" class="form-control" required>
+                <label for="dob">Date of Birth:</label>
+            </div>
+            <div class="form-floating">
+                <select id="sex" class="form-select">
+                    <option value="Female">Female</option>
+                    <option value="Male">Male</option>
+                </select>
+                <label for="sex">Sex</label>
+            </div>
+            <div>
+                <button type="submit" id="contSignup" class="btn btn-success">Continue</button>
+            </div>
+            <p class="switch signupOpt stLogin">Already a member? Click here to login!</p>
+        </form>
+        <div id="profileInfo">
+            <div>
+                <table id="userInfoDisplay" class="table">
+                    <tr id="userDisplay" colspan="2"></tr>
+                    <tr id="nameDisplay"></tr>
+                    <tr id="dobDisplay"></tr>
+                    <tr id="sexDisplay"></tr>
+                </table>
+            </div>
+            <div>
+                <button id="signout" class="btn btn-success">Log Out</button>
+            </div>
+        </div>
+        <script src="" async defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/script.js"></script>
+</html>
