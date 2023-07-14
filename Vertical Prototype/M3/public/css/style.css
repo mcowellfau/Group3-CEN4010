@@ -11,3 +11,13 @@ div {
     color: #0a4732;
     text-decoration: underline;
 }
+
+#homeButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 24px;
+    font-size: 16px;
+    margin: 0 auto;
+    margin-top: 10px;
+  }
