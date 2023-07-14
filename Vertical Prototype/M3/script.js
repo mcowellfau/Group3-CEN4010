@@ -1,9 +1,7 @@
 $(document).ready(function() {
     $('#searchForm').submit(function(event) {
       event.preventDefault();
-  
       var searchTerm = $('#searchInput').val();
-  
       $.ajax({
         url: 'https://trackapi.nutritionix.com/v2/natural/nutrients',
         type: 'POST',
@@ -54,9 +52,7 @@ $(document).ready(function() {
             var $image = $('<img>').attr('src', foodImage);
             imageCell.append($image);
             row.append(imageCell);
-  
             foodTable.append(row);
-  
             // Update the totals
             totals.Calories += food.nf_calories;
             totals.Protein += food.nf_protein;
@@ -65,16 +61,13 @@ $(document).ready(function() {
           });
 
           updateCaloriesProgressBar(totals.Calories);
-  
           // Round the total values to two decimals
           totals.Calories = totals.Calories.toFixed(2);
           totals.Protein = totals.Protein.toFixed(2);
           totals.Carbs = totals.Carbs.toFixed(2);
           totals.Fat = totals.Fat.toFixed(2);
-  
           // Create a separate table for the totals
           var totalsTable = $('<table>').addClass('totalsTable');
-  
           // Create and append table headers for totals
           var totalsHeaders = ['', 'Calories', 'Protein', 'Carbs', 'Fat'];
           var totalsHeaderRow = $('<tr>');
@@ -82,7 +75,6 @@ $(document).ready(function() {
             totalsHeaderRow.append($('<th>').text(header));
           });
           totalsTable.append(totalsHeaderRow);
-  
           // Create the totals row
           var totalsRow = $('<tr>');
           totalsRow.append($('<td>').html('<strong>Totals:</strong>'));
@@ -91,10 +83,8 @@ $(document).ready(function() {
           totalsRow.append($('<td>').text(totals.Carbs));
           totalsRow.append($('<td>').text(totals.Fat));
           totalsTable.append(totalsRow);
-  
           // Append the food table to the search results div
           $('#searchResults').append(foodTable);
-  
           // Append the totals table to the search results div
           $('#searchResults').append(totalsTable);
         },
@@ -150,9 +140,7 @@ function updateCaloriesProgressBar(calories) {
 $(document).ready(function() {
   $('#exerciseForm').submit(function(event) {
     event.preventDefault();
-
     var searchTerm = $('#exerciseInput').val();
-
     $.ajax({
       url: 'https://trackapi.nutritionix.com/v2/natural/exercise',
       type: 'POST',
@@ -170,7 +158,6 @@ $(document).ready(function() {
 
         // Create a table for exercise items
         var exerciseTable = $('<table>').addClass('searchTable');
-
         // Create and append table headers
         var exerciseHeaders = ['Exercise', 'Duration (min)', 'Calories Burned'];
         var exerciseHeaderRow = $('<tr>');
@@ -178,28 +165,22 @@ $(document).ready(function() {
           exerciseHeaderRow.append($('<th>').text(header));
         });
         exerciseTable.append(exerciseHeaderRow);
-
         // Calculate the total burned calories
         var totalBurnedCalories = 0;
-
         // Iterate through each exercise item and create table rows
         exerciseResponse.exercises.forEach(function(exercise) {
           var row = $('<tr>');
           row.append($('<td>').text(exercise.name));
           row.append($('<td>').text(exercise.duration_min));
           row.append($('<td>').text(exercise.nf_calories));
-
           exerciseTable.append(row);
-
           // Update the total burned calories
           totalBurnedCalories += exercise.nf_calories;
         });
-
         // Subtract the burned calories from the total
         var currentCalories = parseFloat($('#caloriesText').text().split('/')[0]);
         var remainingCalories = currentCalories - totalBurnedCalories;
         updateCaloriesProgressBar(remainingCalories);
-
         // Append the exercise table to the search results div
         $('#exerciseResults').append(exerciseTable);
       },
