@@ -21,6 +21,7 @@ $(document).ready(function(){
         uif.show();
         //Reset input
         $("input").val("");
+        $("select").val("");
     });
     //Swap to login option
     $(".stLogin").click(function(){
@@ -28,6 +29,9 @@ $(document).ready(function(){
         supOpt.hide();
         epf.show();
         uif.hide();
+        //Reset input
+        $("input").val("");
+        $("select").val("");
     });
 
     //For signup and login and signout buttons
@@ -79,6 +83,9 @@ $(document).ready(function(){
             console.log(cred.user.email + " has logged in");
             epf.hide();
             welcomeUserProfile(cred.user.uid);
+            //Reset input
+            $("input").val("");
+            $("select").val("");
         }).catch((error) => {
             console.log("Error code: " + error.code);
             alert("Error message: " + error.message);
