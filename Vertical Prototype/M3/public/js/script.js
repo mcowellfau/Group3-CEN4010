@@ -152,3 +152,8 @@ $(document).ready(function(){
         $("#sexDisplay").html("<td>Sex:</td>" + "<td>" + data.sex + "</td>");
     }
 });
+
+const home = document.getElementById('homeButton');
+home.addEventListener('click', function() {
+  window.location.href = '..'
+});
