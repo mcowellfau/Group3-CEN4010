@@ -126,25 +126,21 @@ $(document).ready(function() {
 function updateCaloriesProgressBar(calories) {
   var maxCalories = 2000; // Absolute max of the bar is 2000 calories
   var minCalories = 0;
-
   // Calculate the deficit percentage
   var deficitPercentage = 0;
   if (calories < minCalories) {
     deficitPercentage = Math.abs(calories / maxCalories) * 100;
     $('#caloriesBar').addClass('deficit');
-  } else {
+  } 
+  else {
     $('#caloriesBar').removeClass('deficit');
   }
-
   // Calculate the remaining calories percentage
   var remainingPercentage = Math.max(0, (calories - minCalories) / maxCalories) * 100;
-
   // Update the main progress bar width
   $('#caloriesBar').css('width', remainingPercentage + '%');
-
   // Update the deficit bar width
   $('#deficitBar').css('width', deficitPercentage + '%');
-
   // Update the calories text
   $('#caloriesText').text(calories.toFixed(2) + '/' + maxCalories);
 }
@@ -213,4 +209,9 @@ $(document).ready(function() {
       },
     });
   });
+});
+
+const loginSignup = document.getElementById('loginsignup');
+loginSignup.addEventListener('click', function() {
+  window.location.href = 'login_signup.html'
 });

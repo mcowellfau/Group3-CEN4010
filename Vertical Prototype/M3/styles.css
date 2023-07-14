@@ -108,6 +108,15 @@
     margin-top: 10px;
   }
   
+  #loginsignup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 24px;
+    font-size: 16px;
+    margin: 0 auto;
+    margin-top: 10px;
+  }
   
   #caloriesBarContainer {
     position: relative;
