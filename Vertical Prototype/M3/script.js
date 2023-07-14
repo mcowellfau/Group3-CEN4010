@@ -194,5 +194,5 @@ $(document).ready(function() {
 
 const loginSignup = document.getElementById('loginsignup');
 loginSignup.addEventListener('click', function() {
-  window.location.href = 'login_signup.html'
+  window.location.href = 'public/login_signup.html'
 });
