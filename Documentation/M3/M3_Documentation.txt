@@ -154,71 +154,69 @@ Planned advantages:
 Nutriplay’s primary goal is heighten user retention all the while providing a clear and concise way for user’s to track various aspects of their nutrition. Unlike the aforementioned competitors, we’d like to design Nutriplay such that when a user searches for a food there is a clear distinction between natural foods, branded foods, and restaurant foods. We’d also like to make it so that users are presented with an image of the food they’d like to consume. In doing so, we’d like to make it easier for users unable to type in text or use a keyboard to track their nutrition. This accessibility is important to us as most people with severe nutritional deficiencies are oftentimes unable to perform simple tasks and may have limited range of motion. [4] In addition, we’d like to increase user retention by gamifying our website. We’d like to make use of a progress bar that updates the calories consumed in real time. This would be similar to that of an experience bar in a video game. Milestones may be created and reached by users that raise or lower their bar a certain percentage (depending on whether they’d like to lose or gain weight). Rewards and or messages motivating users may be deployed once a certain amount of progress is reached. 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 3. Data Definitions
 
-
-+--------------------------------------+--------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Name                                 | Meaning                        | Usage                 | Comment                                                                                                                                                                   |
-+--------------------------------------+--------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Visitor                              | actor                          | Use Case Scenarios    | This person is new to NutriPlay and does not have an account created.                                                                                                     |
-| User                                 | actor                          | Use Case Scenarios    | This person has used NutriPlay before and possesses an existing account.                                                                                                  |
-| Member                               | actor                          | Use Case Scenarios    | Shorthand or alternative term for a registered User possessing an account.                                                                                                |
-| Non-Member                           | actor                          | Use Case Scenarios    | Alternative term for Visitor.                                                                                                                                             |
-| Nutritionix API                      | actor                          | Use Case Scenarios    | Backend API providing NLP features and nutrition information to the Members or Non-Members.                                                                               |
-| Nutrition Information                | data                           | Use Case Scenarios    | Contains the number of Calories and micronutrients or minerals associated with the food consumed.                                                                         |
-| System                               | platform hardware and services | Use Case Scenarios    | All code, frontend design and backend supporting services.                                                                                                                |
-| Exercise                             | data                           | Activity Type         | Represents calories burned from Nutritionix API as per conducting a certain exercise over a certain timeframe.                                                            |
-| Food/Meals                           | data                           | Activity Type         | Simply represents food that may or may not have been consumed by the Member or Non-Member that otherwise wants to track their calories.                                   |
-| Calorie                              | data                           | Activity Type         | One kCal, used to represent the amount of energy consumed as part of a food or meal.                                                                                      |
-| Calories Burned                      | data                           | Activity Type         | Represents the Calories burned by the Member that offset their Calorie Count.                                                                                             |
-| Calorie Count                        | data                           | Activity Type         | The total logged Calories consumed and/or burned by the Member. Represented in the EXP Bar.                                                                               |
-| Offset                               | data                           | Activity Type         | Any activity reducing calories in the EXP Bar, namely Exercises.                                                                                                          |
-| EXP Bar                              | data                           | Site User Service     | Displays the Member’s Calorie Count in an interactive, game-like way, allowing them to feel positive reinforcement as they progress throughout their fitness journey.     |
-| Natural Language Processing Features | service                        | Site User Service     | Enables Members and Non-Members alike to enter into a text box in a non-formalistic sense their foods/exercises.                                                          |
-| Search Bar                           | service                        | Site User Service     | Enables Members and Non-Members to find various foods or exercises.                                                                                                       |
-| Calorie Log                          | service                        | Site User Service     | Allows Members to track their Calories Burned and view them as part of their Calorie Count on the EXP Bar.                                                                |
-| Photos                               | service                        | Site User Service     | Displays images of the food as retrieved from the Nutritionix API. Note that these images are mainly stock photos.                                                        |
-| Search                               | service                        | Site User Service     | Allows Members and Non-Members to find various foods or activities.                                                                                                       |
-| Login                                | service                        | Site User Service     | Allows Users to login and visit their Landing Page/Profile.                                                                                                               |
-| NutriPlay                            | Domain Name                    | Site User Service     | A real usable name that represents all web pages and the web site.                                                                                                        |
-| Web Site                             | User Interface                 | User Interface        | Frontend display for Member and Non-Member interactions.                                                                                                                  |
-| Homepage                             | User Interface                 | User Interface        | The first page that any Visitors or Users will arrive at.                                                                                                                 |
-| Additional Resources Page            | User Interface                 | User Interface        | Page that is displayed when User or Visitor seeks additional information relevant to their Calorie tracking needs.                                                        |
-| EXP Bar                              | User Interface                 | User Interface        | The game-like aspect, referenced above as part of the Use Case Scenarios. This is our hallmark feature, differentiating us from the “boring” competition.                 |
-| Firebase                             | Backend service                | Database Organization | Firebase is a Backend-as-a-Service. It provides developers with a variety of tools and services to help them develop quality apps, grow their user base, and earn profit. |
-| Firestore                            | Database                       | Database Organization | User information is stored in a cloud firestore collection whose documents are organized by unique user UIDs.                                                             |
-| UID                                  | Identifier                     | Database Organization | UIDs are created when a user signs up. Each UID contains the user’s name, date of birth, and sex.                                                                         |
-+--------------------------------------+--------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-
-
-
-
-
-
-
-
-
-
-
-
++====+======================================+================================+=======================+===========================================================================================================================================================================+
+|    |                  A                   |               B                |           C           |                                                                                     D                                                                                     |
++====+======================================+================================+=======================+===========================================================================================================================================================================+
+| 1  | Name                                 | Meaning                        | Usage                 | Comment                                                                                                                                                                   |
++----+--------------------------------------+--------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 2  | Visitor                              | actor                          | Use Case Scenarios    | This person is new to NutriPlay and does not have an account created.                                                                                                     |
++----+--------------------------------------+--------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 3  | User                                 | actor                          | Use Case Scenarios    | This person has used NutriPlay before and possesses an existing account.                                                                                                  |
++----+--------------------------------------+--------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 4  | Member                               | actor                          | Use Case Scenarios    | Shorthand or alternative term for a registered User possessing an account.                                                                                                |
++----+--------------------------------------+--------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 5  | Non-Member                           | actor                          | Use Case Scenarios    | Alternative term for Visitor.                                                                                                                                             |
++----+--------------------------------------+--------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 6  | Nutritionix API                      | actor                          | Use Case Scenarios    | Backend API providing NLP features and nutrition information to the Members or Non-Members.                                                                               |
++----+--------------------------------------+--------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 7  | Nutrition Information                | data                           | Use Case Scenarios    | Contains the number of Calories and micronutrients or minerals associated with the food consumed.                                                                         |
++----+--------------------------------------+--------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 8  | System                               | platform hardware and services | Use Case Scenarios    | All code, frontend design and backend supporting services.                                                                                                                |
++----+--------------------------------------+--------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 9  | Exercise                             | data                           | Activity Type         | Represents calories burned from Nutritionix API as per conducting a certain exercise over a certain timeframe.                                                            |
++----+--------------------------------------+--------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 10 | Food/Meals                           | data                           | Activity Type         | Simply represents food that may or may not have been consumed by the Member or Non-Member that otherwise wants to track their calories.                                   |
++----+--------------------------------------+--------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 11 | Calorie                              | data                           | Activity Type         | One kCal, used to represent the amount of energy consumed as part of a food or meal.                                                                                      |
++----+--------------------------------------+--------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 12 | Calories Burned                      | data                           | Activity Type         | Represents the Calories burned by the Member that offset their Calorie Count.                                                                                             |
++----+--------------------------------------+--------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 13 | Calorie Count                        | data                           | Activity Type         | The total logged Calories consumed and/or burned by the Member. Represented in the EXP Bar.                                                                               |
++----+--------------------------------------+--------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 14 | Offset                               | data                           | Activity Type         | Any activity reducing calories in the EXP Bar, namely Exercises.                                                                                                          |
++----+--------------------------------------+--------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 15 | EXP Bar                              | data                           | Site User Service     | Displays the Member’s Calorie Count in an interactive, game-like way, allowing them to feel positive reinforcement as they progress throughout their fitness journey.     |
++----+--------------------------------------+--------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 16 | Natural Language Processing Features | service                        | Site User Service     | Enables Members and Non-Members alike to enter into a text box in a non-formalistic sense their foods/exercises.                                                          |
++----+--------------------------------------+--------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 17 | Search Bar                           | service                        | Site User Service     | Enables Members and Non-Members to find various foods or exercises.                                                                                                       |
++----+--------------------------------------+--------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 18 | Calorie Log                          | service                        | Site User Service     | Allows Members to track their Calories Burned and view them as part of their Calorie Count on the EXP Bar.                                                                |
++----+--------------------------------------+--------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 19 | Photos                               | service                        | Site User Service     | Displays images of the food as retrieved from the Nutritionix API. Note that these images are mainly stock photos.                                                        |
++----+--------------------------------------+--------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 20 | Search                               | service                        | Site User Service     | Allows Members and Non-Members to find various foods or activities.                                                                                                       |
++----+--------------------------------------+--------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 21 | Login                                | service                        | Site User Service     | Allows Users to login and visit their Landing Page/Profile.                                                                                                               |
++----+--------------------------------------+--------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 22 | NutriPlay                            | Domain Name                    | Site User Service     | A real usable name that represents all web pages and the web site.                                                                                                        |
++----+--------------------------------------+--------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 23 | Web Site                             | User Interface                 | User Interface        | Frontend display for Member and Non-Member interactions.                                                                                                                  |
++----+--------------------------------------+--------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 24 | Homepage                             | User Interface                 | User Interface        | The first page that any Visitors or Users will arrive at.                                                                                                                 |
++----+--------------------------------------+--------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 25 | Additional Resources Page            | User Interface                 | User Interface        | Page that is displayed when User or Visitor seeks additional information relevant to their Calorie tracking needs.                                                        |
++----+--------------------------------------+--------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 26 | EXP Bar                              | User Interface                 | User Interface        | The game-like aspect, referenced above as part of the Use Case Scenarios. This is our hallmark feature, differentiating us from the “boring” competition.                 |
++----+--------------------------------------+--------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 27 | Firebase                             | Backend service                | Database Organization | Firebase is a Backend-as-a-Service. It provides developers with a variety of tools and services to help them develop quality apps, grow their user base, and earn profit. |
++----+--------------------------------------+--------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 28 | Firestore                            | Database                       | Database Organization | User information is stored in a cloud firestore collection whose documents are organized by unique user UIDs.                                                             |
++----+--------------------------------------+--------------------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 29 | UID                                  | Identifier                     | Database Organization | UIDs are created when a user signs up. Each UID contains the user’s name, date of birth, and sex.                                                                         |
++====+======================================+================================+=======================+===========================================================================================================================================================================+
 
 
 4. Overviews, Scenarios, and Use Cases
@@ -605,20 +603,3 @@ Lastly, in analyzing whether NutriPlay might be Trademarkable, there exists no s
 
 Effectively, then, it is fair to say we are reasonably using the provided materials as part of the Nutritionix API. Google Firebase is similarly free to use, as is GitHub. There is no legal risk present or at hand that might present whereby we face litigation, but there is always room for protection; Trademark and Copyright protections are, as aforementioned, available, but might not be desirable, given the educational scope of this project.
 
-
-
-
-Exhibit 1a: TESS Search for Trademark:
-
-
-  
-
-
-
-
-
-
-
-
-
-Exhibit 1b: TESS Results for “NutriPlay” (free-form search, design and word marks):
