@@ -1,0 +1,724 @@
+SW Engineering Summer 2023
+[FAU: CEN 4010]
+
+
+Milestone 3 Document
+Project Proposal: 
+NutriPlay
+
+Group: 3
+Trello Board: https://trello.com/b/q4dWpcj3/nutriplay-checklist
+GitHub Repo: https://github.com/mcowellfau/Group3-CEN4010
+
+Scrum Master, Frontend Developer: Danny Ruiz
+Frontend Developer: Yolanda Vega
+Backend and Frontend (Hybrid) Developers: Matthew Cowell, William Gardner
+Product Owner, Backend Developer: Josh Young
+
+Vertical Prototype URL: https://mcowellfau.github.io/Group3-CEN4010/
+
+Features and Functionalities to be Tested:
+Login/Logout
+Store New Member Profile/Retrieve New Member Profile
+Sign-up
+API calls for food
+API calls for exercise
+EXP Bar: display, deficit (negative cals = gold color), excess (red color)
+
+Milestone 3
+Date: 18 July 2023
+Revision History
+
+
+TABLE OF CONTENTS
+
+
+
+
+Executive Summary ………………………..
+2
+Competitive Analysis …………………………………
+4
+Data Definitions …………………………………
+11
+Overview, scenarios and use cases …………………………………
+16
+High-level functional requirements …………………………………
+20
+List of non-functional requirements …………………………………
+24
+High-Level System Architecture and Database Organization…………………
+27
+High-Level UML diagrams …………………………………
+30
+ Risk Analysis …………………………………
+33
+
+
+
+
+
+
+
+
+Executive Summary
+	In the United States, and throughout much of the modern, developed world, obesity rates and overall levels of inactivity are striking. The World Health Organization notes the following striking facts: (i) “Worldwide obesity has nearly tripled since 1975”; (ii) “in 2016, more than 1.9 billion adults, 18 years and older, were overweight” and “over 650 million were obese”; (iii) “39% of adults aged 18 years and over were overweight in 2016, and 13% were obese”; and, (iv) strikingly and most disturbingly, “obesity is preventable.” [1]
+	While this public health crisis certainly serves as a motivating tool for our development of NutriPlay, it is not our only endeavor. NutriPlay is envisioned as something of a game-like calorie counter; it fits perfectly in the space of both those who are striving to lose weight and maintain a healthier lifestyle, as well as with those trying to keep their healthy eating habits. We strive to develop a tool that is, unlike its peers, fun and usable; we believe in elegant simplicity, and envision a product where users of any technical level can interact efficiently and effectively with our software.
+	This is where our key aims come in: NutriPlay utilizes Natural Language Processing (hereinafter “NLP”) models and API based on said models to take simple sentences and convert them into trackable foods. Instead of being bombarded with a plethora of images, or inefficient search features, Nutriplay takes any sentence, as simple as “I had three eggs for breakfast” and converts them into “trackable” foods, denoting and logging their calorie count, nutrition information, and the like. In a world where ChatGPT is becoming predominant in studies, law, medicine, and even software development, we strive to make something of a “FoodGPT.” [2]
+	NutriPlay provides users with login capabilities, allowing them to form an account and track their daily activities and food intake. It also takes into account exercise and other caloric burning endeavors, allowing users to either search for-via a similar NLP-based API-or enter in raw data format from a FitBit or Apple Watch, or other such device, their calories burned, as a way to offset their overall caloric intake for the day. It also will provide friendly reminders, hopeful encouragement, and positive reinforcement upon login, and display simple rewards as part of the experience-bar-like (hereinafter “EXP Bar”) aspect.
+	However, we also want to add a fun and interesting take to our tool. Rather than simply count the user’s calories, our tool actively encourages the user through psychological means, converting their calories and tracking them as a “score” and adding a game-like “EXP Bar” to their profile to keep them interested. Retained interest in any application is difficult to garner, and since consistency is the key to weight loss, as referenced in a CNN study, it seems that our focus on consistency is the key to our end users’ successes. [3] 
+	NutriPlay’s goals are evident in its name: We seek to provide our end users with a tool that both helps them meet their nutritional needs and goals, while capturing and capitalizing upon game-like interactivity to retain their interest and bolster their success stories. 
+
+
+
+
+
+
+Competitive analysis
+
+The analysis of competitors’ web sites will focus on five main features (homepage, design, navigation, search, content, usability) and one additional feature (retention). The competitive analysis will utilize a numerical scale (1=bad, 2=poor, 3=fair, 4=good, 5=outstanding) and consists of three websites chosen for their focus on food and activity tracking. Current analysis of NutriPlay is based on the features available in the current implementation. As more features are added in future milestones, individual scores for NutriPlay will be updated. 
+
+
+
+
+NutriPlay
+MyFitnessPal
+MyFoodDiary
+Chronometer
+Homepage:
+4
+4
+2
+4
+Design:
+3
+5
+1
+5
+Navigation:
+4
+5
+4
+5
+Search:
+5
+3
+5
+5
+Usability:
+5
+5
+4
+3
+Retention:
+1
+4
+1
+3
+     Mean:
+3.7
+4.3
+2.8
+4.2
+
+
+MyFitnessPal () https://www.myfitnesspal.com/ 
+Homepage:
+The myfitnesspal homepage is rudimentary in principle. The main homepage features a section called “Your Daily Summary”. In this section, users have access to the number of calories they are allotted per day. This daily caloric allotment is calculated from the weight and height a user inputs upon registration with the site. Users may then update their summary with any foods they’ve consumed or exercise they’ve completed throughout the day. A progress bar denotes the number of calories consumed thus far and fills up based on the calories contained in each food item consumed. Similarly, calories burned from exercise are subtracted from the total calories consumed. A news feed located below the summary makes up the rest of the homepage. Here, users may share their status with other members of myfitnesspal similar to that of a blogpost. 
+Design:
+myfitnesspal approaches the design of their website with simplicity. Text on the page is designed one of two ways: white on a solid blue background or blue on a solid white background. This contrast heightens the discernibility of different aspects of the site making them easy to navigate to. In addition, primary features of the site are capitalized, increasing their visibility and highlighted when the user hovers their mouse over them. Each primary feature of the site (e.g., “MY HOME”, “FOOD”, “EXERCISE”, etc.) has several related subsections. These subsections attempt to break-down the primary features into smaller, more specialized chunks. For example, the “FOOD” feature is broken down into “Food Diary”, “Database”, “My Foods”, “My Meals”, “Recipes”, and “Settings”; “Food Diary” tracks all food eaten during the day and provides a comprehensive breakdown of the nutrition derived from the food item. 
+Navigation:
+Navigation across the site is very good and perhaps the best aspect of myfitnesspal. At the top of the page is the main navigation bar. The navigation bar is central to the page and often the first thing the user sees, making it easy to locate any area of the site they’d like to visit. This bar includes links to all core services provided by myfitnesspal including links to the user’s homepage, food, exercise, reports, apps, community, blog, and any premium features offered by the site. Within each core service (e.g., “FOOD”) lies a separate, smaller navigation bar. This bar contains links to all subsections within a core service (e.g., “Food Diary”). The primary navigation bar remains on the page at all times if the user chooses to go back to a different core service. However, they must select a different core service to view that service’s associated subsections. 
+Search:
+myfitnesspal has several different types of search functions on their website. The first has to do with locating different foods. It is found under the database section within the food core service. In the database section, a user may type into a text-box and search for a wide-range of foods and food products. myfitnesspal attempts to best match the type of food to the text the user has searched. This search function appears to be fairly accurate. For example, if a user types in the word “burger”, the search results in many different foods with the most similar at the top of the list. Unfortunately, this function does not include pictures of the food; this may make it harder on users unable to read-text to identify foods they have consumed. There is also no distinction between meals cooked by a user and those purchased at an establishment like a restaurant. A separate checkbox allowing a user to distinguish between the two may be advantageous in narrowing down search results. Once a user has added a food or meal to their daily intake of calories, that meal is saved to a list and may be looked up again under “My Foods” and “My Meals” from a smaller subset of items. This makes identifying routinely eaten meals much faster and easier on the user. Similar to the food database, myfitnesspal has an exercise database wherein users may search exercises they have completed to add to their daily summary. This search is much more robust and allows users to indicate the time they’ve exercised, number of reps/sets completed, weight lifted, and the amount of calories burned. Users also have access to a “My Exercises” list to quickly look up exercises they complete on a routine basis.
+Useability: 
+Users add food to their daily consumption from the food database section of the site. They select which meal they are currently eating (i.e., breakfast, lunch, dinner, or snacks). From there, they search the food database for the food by name. They may also locate the food from their personalized list of frequently consumed foods and meals. Users may only search and add one food or meal at a time. This may help users more accurately track the nutrition of individual food items but may take up too much of their time in contrast to if they were able to add multiple items instead. Similarly, the tracking and adding of exercise completed to one’s day functions nearly the same. One caveat is that myfitnesspal makes a distinction between cardiovascular exercise and strength training. 
+Retention:
+Retention of users appears to have been kept in mind when developers created myfitnesspal. If a user tracks their calories every day, a counter appears notifying them of their “day streak”. This reminds users of how many consecutive days they’ve used the website to track their nutrition. Reports for metrics related to characteristics of the user’s body (e.g., weight, waist-size), and aspects of their nutrition like their Vitamin A consumption are generated over set periods of time dependent on the user’s activity. In other words, the more users use the site, the more information they have available to reflect on. User’s may also interact with each other through the community tab and or keep others updated on their fitness via user-driven blog posts. These aspects of the site may better hold users accountable for their fitness and discourage any feeling of loneliness. 
+MyFoodDiary () https://www.myfooddiary.com/ 
+Homepage:
+MyFoodDiary’s homepage is straight and to the point. Unlike other nutrition trackers, the free version of this site only serves only as a nutrition “checker” rather than a nutrition “tracker”. The central focus of the homepage is a single search bar. This is used to look up food and the food’s associated nutrition facts. Below this search bar is an ad for the premium version of MyFoodDiary and testimonials from users who have lost weight using the site. 
+Design:	
+The design of the site is a little overwhelming. The fact that MyFoodDiary doesn’t have many features accessible in its free version may allow for this oversight. The white text at the top of the page does not stand out that well in contrast to the colorful background image. In addition, the sign-in and join buttons lack uniformity and when placed next to each other look like they don’t belong on the page. The blog area of the site has individual posts displayed in sequential order from top-to-bottom. A small thin line separates each post; however, if not for this line it would be difficult to discern where one post ends and another begins. In addition, a cluttered display of twitter posts made by the MyFoodDiary twitter account is located on the right of the page.
+Navigation:
+A single navigation bar located at the top of the page serves as the primary method for navigating the site. Users may navigate to one of three sections on the website; including, the home, blog, and help sections. Moving between areas on the site is fairly straightforward. One thing MyFoodDiary does well is allowing users to navigate to different restaurants and or brands within the food tracker. Upon doing so, users may view a somewhat comprehensive list of all food items located at a restaurant or shared among a brand. 
+Search:
+The search function is the main feature of MyFoodDiary. Users are able to search from an extensive database filled with many different types of food. They are able to narrow down their search to specific food brands or restaurants. The level of specificity characteristic of MyFoodDiary’s search function is second to none. For example, when searching for a burger patty, a plethora of options appears; some of those even going so far as to display the ratio of lean meat to fat in the type of burger patty. 
+Useability:
+MyFoodDiary’s nutrition checker is very easy to use. You search the food you want to check the nutrition of and a nutrition label is brought up similar to the one seen on foods at a grocery store. A comprehensive breakdown of the nutrition facts is found in this label. Along with this label, a pie chart is generated, displaying the breakdown of fat, protein, and carbs inherent to the food. If the wrong food was selected, a list of similar food items is generated and displayed to the right for the user’s convenience. Alternatively, the user may re-search and re-select the food item of their choice if it is not in this list. 
+Retention:
+There is nothing on MyFoodDiary’s website that encourages retention of user’s. The search function feels more like a tool to use rather than an engaging game. The blog posts are typically written by nutritionists rather than users and offer almost no way for users to interact with each other. 
+
+Cronometer () https://cronometer.com/ 
+Homepage:
+Prior to registering with the site, the homepage advertises users to sign up for the site and emphasizes that use of the site is free. Those not registered with the site do not have access to features of the site like the blog section or forums unless they create an account and login. After creating an account, the homepage shifts to that of a dashboard with four options. Each one of which serves as a core service of the site; including: food, exercise, biometric data, and notes. Users may click on any one of these hyperlinks to add to their daily food intake, exercises completed, new biometric information, or create a note. Below this dashboard is a larger image with a hyperlink to the food service prompting users to “Log a Food”. In addition, two bar charts are generated showing users how many kilocalories they have consumed throughout the day and how much weight they have lost since they began using the website. 
+Design:
+The design of the site is perhaps the best among the nutrition tracking competitors. The use of contrast among light and dark colors is easy on the eyes. Locating hyperlinks to different areas of the site is easy because of this and it is hard to get lost. The primary navigation bar is vertical and located on the left of the page. This abstraction makes it easier for the user to remain focused on the main features of the page and not get distracted; main features of the page are usually located to the right of this bar. Subsections within primary services (e.g., the “charts” area under the “Trends” service) use same-sized rectangular boxes with rounded edges to contain important information. If another chart or graphic is used to convey information like biometric data, appropriate colors are used to make this part of the page stand out and look less messy. For example, a chart listing the breakdown of Vitamins in a food item alternates between a gray and white background behind each Vitamin to make them all easier to locate. This design choice removes the need for a stark bar between individual components and gives the page a sense of flow, preventing diagrams from looking crudely drawn.
+Navigation:
+Navigation of the site is streamlined. A single, vertical, navigation bar serves as the main way for users to get to different areas within Cronometer. It is located on the left side of the page. The first two links take a user to their homepage (the “Dashboard”) and their personalized food diary. The rest of the site is broken up into three sections: Trends, Foods, and Settings. Each section is made up of more specialized sub-sections. Take the trends section for instance, a user clicks this section and may then navigate to any one of four subsections: charts, nutrition reports, print report, and snapshots. Clicking any one of these subsections results in a fast response time wherein the user is brought to a different part of the site very quickly. If the user wishes to go elsewhere, they may collapse this part of the navigation bar and choose a different area of the site. 
+Search:
+Users of Cronometer may search for foods to log for daily consumption or exercises completed as part of their daily activity. Users click a food icon with an apple and a plus to begin logging food. They may search from all food items available, specific brands, and or restaurants. Cronometer allows users to log custom foods too. Unlike other websites, the ability to log custom food is extremely advanced. Users may indicate the level of each nutrient and micronutrient per food item as well as the standard descriptors like protein, fat, carbohydrates, etc. Similar to myfitnesspal, users may also select from a list of frequently eaten foods called “Favorites” to reduce the time spent searching. Each search on the site is fast and generates a list of foods with the best matching items at the top of the list. Cronometer takes their exercise logging capabilities one step farther as well. Users may search from a database full of pre-generated exercises to log or may add a custom exercise. The ability to add a custom exercise is very refined. Users may indicate the type of exercise they’d like to log (e.g., cardio, gym, household activity, occupational activity, etc.). They may also add a custom exercise and re-select this exercise from a list of favorites in the future; reducing the time they spend searching on the website.
+Useability: 
+The site is very easy to use. However, one thing that may be difficult for new users is the use of each subsection in the navigation bar. Outside of the dashboard, which lends itself to ease of use in logging new foods and exercises, the subsections of the navigation bar may not be specific enough in their function. For example, one section under foods called “Ask the Oracle” allows users to search for foods that meet their specific nutrient needs (e.g., if they need more potassium, the oracle may recommend a banana). Although this section of the site is engaging and quirky, some users may not touch it at all because the identifier does not accurately describe the oracles function. Most people will use this site to track their calories and nutrients, along with progress met on their weight-loss goals. Cronometer may include too many additional yet unrelated features that pull away from the main use-case of the site. Some of the subsections of the core services may be unnecessary and may not provide any use for the average user.  
+Retention: 
+Cronometer does a poor job at keeping existing users. The only thing influencing the retention of new users is the fact that the core function of the site, nutrition tracking, works very well. Outside of this, there is little in the way of allowing users to engage with others and report their progress. However, it may be the case that this core service works so well and as intended that users may have no other option but to continue using Cronometer or be subject to slightly the worse nutrition tracking offered by competitors. 
+
+
+Planned advantages:
+Nutriplay’s primary goal is heighten user retention all the while providing a clear and concise way for user’s to track various aspects of their nutrition. Unlike the aforementioned competitors, we’d like to design Nutriplay such that when a user searches for a food there is a clear distinction between natural foods, branded foods, and restaurant foods. We’d also like to make it so that users are presented with an image of the food they’d like to consume. In doing so, we’d like to make it easier for users unable to type in text or use a keyboard to track their nutrition. This accessibility is important to us as most people with severe nutritional deficiencies are oftentimes unable to perform simple tasks and may have limited range of motion. [4] In addition, we’d like to increase user retention by gamifying our website. We’d like to make use of a progress bar that updates the calories consumed in real time. This would be similar to that of an experience bar in a video game. Milestones may be created and reached by users that raise or lower their bar a certain percentage (depending on whether they’d like to lose or gain weight). Rewards and or messages motivating users may be deployed once a certain amount of progress is reached. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Data Definitions
+
+Name
+Meaning
+Usage
+Comment
+Visitor
+actor
+Use Case Scenarios
+This person is new to NutriPlay and does not have an account created.
+User
+actor
+Use Case Scenarios
+This person has used NutriPlay before and possesses an existing account.
+Member
+actor
+Use Case Scenarios
+Shorthand or alternative term for a registered User possessing an account.
+Non-Member
+actor
+Use Case Scenarios
+Alternative term for Visitor.
+Nutritionix API
+actor
+Use Case Scenarios
+Backend API providing NLP features and nutrition information to the Members or Non-Members.
+Nutrition Information
+data
+Use Case Scenarios
+Contains the number of Calories and micronutrients or minerals associated with the food consumed.
+System
+platform hardware and services
+Use Case Scenarios
+All code, frontend design and backend supporting services.
+Exercise
+data
+Activity Type
+Represents calories burned from Nutritionix API as per conducting a certain exercise over a certain timeframe.
+Food/Meals
+data
+Activity Type
+Simply represents food that may or may not have been consumed by the Member or Non-Member that otherwise wants to track their calories.
+Calorie
+data
+Activity Type
+One kCal, used to represent the amount of energy consumed as part of a food or meal.
+Calories Burned
+data
+Activity Type
+Represents the Calories burned by the Member that offset their Calorie Count.
+Calorie Count
+data
+Activity Type
+The total logged Calories consumed and/or burned by the Member. Represented in the EXP Bar.
+Offset
+data
+Activity Type
+Any activity reducing calories in the EXP Bar, namely Exercises.
+ EXP Bar
+data
+Site User Service
+Displays the Member’s Calorie Count in an interactive, game-like way, allowing them to feel positive reinforcement as they progress throughout their fitness journey.
+Natural Language Processing Features
+service
+Site User Service
+Enables Members and Non-Members alike to enter into a text box in a non-formalistic sense their foods/exercises.
+Search Bar
+service
+Site User Service
+Enables Members and Non-Members to find various foods or exercises.
+Calorie Log
+service
+Site User Service
+Allows Members to track their Calories Burned and view them as part of their Calorie Count on the EXP Bar.
+Photos
+service
+Site User Service
+Displays images of the food as retrieved from the Nutritionix API. Note that these images are mainly stock photos.
+Search
+service
+Site User Service
+Allows Members and Non-Members to find various foods or activities.
+Login
+service
+Site User Service
+Allows Users to login and visit their Landing Page/Profile.
+NutriPlay
+Domain Name
+Site User Service
+A real usable name that represents all web pages and the web site.
+Web Site
+User Interface
+User Interface
+Frontend display for Member and Non-Member interactions.
+Homepage
+User Interface
+User Interface
+The first page that any Visitors or Users will arrive at.
+Additional Resources Page
+User Interface
+User Interface
+Page that is displayed when User or Visitor seeks additional information relevant to their Calorie tracking needs.
+EXP Bar
+User Interface
+User Interface
+The game-like aspect, referenced above as part of the Use Case Scenarios. This is our hallmark feature, differentiating us from the “boring” competition.
+Firebase
+Backend service
+Database Organization
+Firebase is a Backend-as-a-Service. It provides developers with a variety of tools and services to help them develop quality apps, grow their user base, and earn profit.
+Firestore
+Database
+Database Organization
+User information is stored in a cloud firestore collection whose documents are organized by unique user UIDs.
+UID
+Identifier
+Database Organization
+UIDs are created when a user signs up. Each UID contains the user’s name, date of birth, and sex.
+
+
+
+
+
+
+
+
+
+
+Overviews, Scenarios, and Use Cases
+Use Case - Search
+Upon visiting the page, The User - regardless of whether they have an account or are instead a Visitor - seeks to search for caloric information about a certain food or exercise. User or Visitor uses the respective search bar field to enter into the NLP model their food or exercise description. The system references the API and returns nutrition facts, images, and general calorie information for the food and the duration and calories burned for the exercise. 
+Description: This use case describes the process of how User will utilize the search feature of the system.
+Actors:
+User
+Visitor
+System
+Nutritionix API
+Preconditions:
+User/Visitor has an active internet connection
+System is available
+User/Visitor has knowledge of their food consumption and recalls what they ate (quantity, type, etc.) or knowledge of the exercise they completed and duration of the activity.
+Primary Flow of Events:
+User/Visitor arrives at the webpage.
+Users may log in. Visitors can remain logged out, as they do not have an account. Should User log in, they are presented with their profile page.
+User/Visitor enters search criteria of food or calorie burning exercise/activity into the respective search bar.
+Web page displays relevant search results with images, nutrition information, and caloric amounts or duration of activity and calories burned.
+Users, if logged in, may store this information in their log. Visitors may view information but cannot log either or.
+Terminate Use Case: Search
+Alternate Flows
+User Enters Prohibited Characters/Format into Search Bar.
+If, in step 4(c), User enters prohibited characters or a prohibited format in the search bar:
+Website notifies user that the characters they used are prohibited, and
+Return to step 4(a).
+User/Visitor Enters Unknown Food/Activity Not in API Database
+User/Visitor enters a location/activity that doesn’t exist in the API database.
+If, in step 4(c), User enters an unknown food or calorie-burning activity into the database and nothing is returned, the website shall:
+Provide alternative suggestions, and
+Terminate Use Case: Search
+
+Use Case - Add a Food/Calorie-Burning Activity to Log
+Users want to add food or calorie-burning activity to their log in order to determine their current status. User logs in, conducts a search (See: Use Case - Search, above), and selects their consumed food or performed activity. User will press the “Add Food /Activity to Log" button, and System will check to ensure User is logged in. If not, User is asked to log in, or create an account if one does not exist. Once System confirms a successful login, User re-attempts to add the food or activity to their log. User will press Confirm, and the new Food/Activity is added to their calorie log and their EXP bar progresses/moves.
+Description: This use case describes the process of how User will add a Food/Activity to their calorie log and move their EXP bar.
+Actors:
+User
+System
+Nutritionix API
+Preconditions:
+User/Visitor has an active Internet Connection
+System is available
+User has an active account
+User is logged into system
+User has conducted a search and selected the relevant food/activity
+Primary Flow of Events:
+User has conducted a Search (See: Use Case - Search) for food/activity not yet logged.
+System checks if User is logged in.
+If User is not logged in, go to Alternative Flow 5(a).
+User fills out the search bar (or form, if logging activity) provided by the system.
+User press the Confirm button to save added food/activity to their calorie log and move their EXP bar.
+The system saves the selected food/activity to the User's calorie log and recalculates totals.
+Terminate Use Case - Add a Food/Calorie-Burning Activity to Log.
+Alternative Flows:
+User is not logged in (from Primary Flow 4(c)).
+The system requests User enters their extant or new credentials.
+If User does not have an account, go to Alternative Flow 5(b)
+User enters credentials.
+System validates credentials
+if credentials are improperly entered, return to step 5(b) and re-confirm entry.
+End Alternative Flow 5(a) - Return to Primary Flow, step 5(d).
+User does not have an account (from Alternative Flow 5(a)(i)(1))
+The system requests User create an account
+If User does not want to create an account, End Alternate Flow 5(b). Terminate Use Case - Add a Food/Calorie-Burning Activity to Log.
+User clicks the “Create a New Account” button.
+System displays Account Creation Form.
+User completes the form, and presses Submit.
+The system creates a new member account in the member database.
+End Alternative Flow - return to Primary Flow, step 4(d).User logs into their account.
+
+Use Case - Search for Additional Resources
+User seeks additional resources, e.g., recipes, blogs, dieticians nearby, or how to start a weight loss journey, as well as ways on how to meet or exceed their fitness goals. User navigate to a new section of the website, entitled “Additional Resources.” Once the system redirects User to the new webpage, User is provided with Additional Resources and advice relevant to their interests.
+Description: This use case describes the process of how User will find additional information relevant to their weight loss goals-or fitness goals-on the website.
+Actors:
+User
+Visitor
+System
+Preconditions:
+User has an active Internet Connection
+System is available
+Primary Flow of Events:
+User arrives at the webpage.
+User may log in. Should they log in, they are presented with their profile page.
+User selects the “Additional Resources” tab and navigates to that portion of the webpage.
+Additional resources are provided to User.
+Terminate Use Case - Search for Additional Resources.
+Alternative Flows:
+User/Visitor does not find a resource as anticipated, but wants to suggest such a resource or idea be added.
+User/Visitor navigates to the “Contact Us” section of the website and fills out the provided form, providing recommendations.
+Terminate Use Case - Search for Additional Resources.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+High-level Functional Requirements
+Non-Member expectations:
+	Priority 1: Registering for an Account
+The system shall allow the user to create an account by defining a custom User ID, password, while also requesting their first name, last name, date of birth, email address, and any/all answers to security and verification questions in the case that they forget their password.
+The system shall not allow Visitor to create an account if their specified UserID has been chosen by another User and already exists in the System's database.
+Also System shall prevent the user from creating an account if the User’s chosen password does not match the re-enter password field.
+System shall require a certain degree of complexity in password entry, so as to ensure User credentials are secured and stored in a manner that is not accessible by malicious actors.
+System shall prevent the creation of User’s account if any of the aforementioned fields are not properly filled with information.
+Stimulus/Response Sequence
+User enters a User ID
+User enters a password
+User re-enters password for confirmation
+User shall enter their first and last name
+User shall enter their date of birth
+User shall enter their email address
+User shall provide answers to security questions
+System shall check if UserID is available
+System shall validate password against requirements
+System shall store User ID, first name, last name, date of birth, and email address, as well as security question responses
+System shall confirm that the account was created by User and send an automated email confirmation
+System will automatically redirect the user back to the home page at will
+Function requirement label
+REQ 1.1 : Registering for an Account
+
+	Priority 1: Search Through the Food/Exercise Database
+Visitor may browse by selecting entering into Search Bar any food or exercise of which they may wish to check the Calorie Count. System shall automatically parse, via the Nutritionix API, Visitor’s plain text entry, e.g., if Visitor enters, “for breakfast I had three eggs,” the Calorie Count and Nutrition Facts regarding three eggs shall be returned, as well as a small picture of an egg to confirm entry via visual cues. Visitor will not be able to log their results, as they are not a registered Member.
+Stimulus/Response Sequence
+User sees the Search Bar on the main page of the Website
+User enters their desired query
+System shall parse, via NLP, their entry and attempt to pull up all relevant nutritional information
+Visitor will view said information
+System shall prevent the Visitor from logging any of such information, as they possess Non-Member status
+Function requirement label
+REQ 2.1: Search Through the Food/Exercise Database
+
+Priority 3: View any Additional Resources or Suggest Foods/Exercises to Add
+System will provide additional information and resources to Visitor, allowing them to view non-searchable information. Additionally, Visitor may provide suggestions regarding additional foods and exercises to incorporate into System.
+Stimulus/Response Sequence - View Additional Resources
+Visitor clicks on “Additional Resources”
+System shall provide specific Additional Resources, based on Visitor’s location/IP data
+System shall also provide general links, and allow Visitor to submit suggestions for adding to the database
+Stimulus/Response Sequence - Suggest New Foods/Exercises
+Visitor shall click “suggest/add new information” under “Additional Resources”
+Visitor will be prompted for information to add
+System shall re-train NLP model and add information to database as necessary
+Function requirement label
+REQ 3.1: View Additional Resources
+REQ 3.2: Suggest New Foods/Exercises
+
+Priority 1: About Us
+System provides information to Visitor about the functionality that can benefit prospective User and reasons for registration to Member status. System also provides information about this project, the Nutritionix API, and how their information is processed/stored/used. 
+Stimulus/Response Sequence
+Visitor uses the navigation bar and clicks “About us”
+Visitor is redirected to About us page
+Visitor sees links about relevant information at the top of the page
+Visitor sees our Mission Statement, privacy and security promises, and Nutritionix API information
+Visitor is provided with the opportunity to register for Member status
+4.3 Function requirement label
+REQ 4.1 About Us
+
+Member Expectations:
+Priority 2: Edit User Profile
+Users shall be able to edit their profile by changing their provided first and last name, date of birth, and email address. Users may also add or modify their security questions. Users further may view their EXP Bar, and receive messages of encouragement. System shall store all updated information upon pressing the “Save Changes” button. System shall prevent any changes to any User’s profile if any fields are left blank. Users must provide the information in a valid format meeting aforementioned requirements in order for the system to store the information.
+Stimulus/Response Sequence
+User will navigate to their Profile Page and a drop down menu will be activated
+User will click on edit profile
+User will change their provided first and last name, date of birth, or email address
+User shall click “Save Changes”
+System shall store their updated information
+System shall refresh webpage to User’s profile, now containing updated information
+Function requirement label
+REQ 5.1: Edit User Profile
+
+Priority 1: Add a Food/Activity to User Log
+Users will search for their consumed food or performed activity and have the ability to add the selected food or activity to their log. The system will prevent the user from adding to their log if the user has not registered an account or logged in. Any Users must be members and be logged in if they wish to add a food or activity to their log.
+Stimulus/Response Sequence
+User will use the search function for a specific food/activity
+User will select their food/activity
+User will click the “Add Food/Activity to Log”
+User may search for, select, and add more food/activities if desired
+User will click “Confirm”
+System shall save the selected food/activity to the user’s calorie log
+System shall recalculate all totals and show the user their updated EXP bar
+System shall provide a button to redirect the user back to the home page
+Function requirement label
+REQ 6.1: Add a Food/Activity to Log
+
+Priority 1: View/Modify/Track EXP Bar and Calorie Count
+Users will be able to view and track the movement of their EXP Bar as they log their calorie intake and exercise throughout the day. As User offsets Calories consumed with Exercise, their bar shall change and move, like that of a videogame. They will be given objectives and rewards for meeting certain goals, again reflecting the video game-like nature of NutriPlay.
+Stimulus/Response Sequence
+User will use the search function for a specific food/activity
+User will select their food/activity
+User will click the “Add Food/Activity to Log”
+User may search for, select, and add more food/activities if desired
+User will click “Confirm”
+System shall save the selected food/activity to the user’s calorie log
+System shall recalculate all totals and show the user their updated EXP Bar
+System shall provide feedback based on User’s performance as displayed on the EXP Bar
+User may offset any Calories consumed with Activities or Exercise in a similar manner
+Function requirement label
+REQ 7.1: View/Modify/Track EXP Bar and Calorie Count.
+
+
+
+List of non-functional Requirements
+High-Level Performance Requirements:
+Responsiveness: System shall be responsive, operating on various screen sizes and at various resolutions, ranging from smartphones to desktop monitors.
+Cycle Time: The cycle time at expected performance will be 1.0. With this in mind, System may operate at a variable performance of between 1.0 - 1.2 with a load of 10 or more Users or Visitors. Cycle time shall increase by approximately 0.2 seconds per every 10 users.
+Speed Per Transaction: The speed per transaction will be between 20-100 milliseconds, depending on the Cycle Time. The system will process approximately 10-50 transactions per second.
+Test Requirements: The test requirements for performance will include an expected load test as well as testing on all of the functional specs listed and their speed per transaction. The testing shall also consider edge cases, such as Users inputting data that is unable to be processed by the NLP model via the Nutritionix API.
+Reliability: The mean time between failures is such that NutriPlay shall have approximately one (1) hour or less of downtime throughout the operational deployment of the web application, presumably the first three (3) to six (6) months following completion of this project. This downtime can be used to perform maintenance and update information, as well as to inspect the integrity of the Firestore database.
+Minimum Bug Counts:
+We anticipate the following:
+No more than five (5) bugs in the system during integration and testing.
+No more than three (3) bugs can remain in the system after delivery.
+Execution Speed: Execution speed should be such that the initial home page should load within 100-200 milliseconds on a modern broadband connection (~100MB/s).
+Storage Utilization: Storage utilization should be within reason, provided as such by the Firestore database and other such backend solutions.
+Robustness: The time needed to restart after a failure should be under one (1) hour. 
+Ease of Use:
+Learning Curve: The learning curve for Non-Members and Members alike should be minimal, so as to enable easy use of the web application and fulfillment of any User’s goals.
+
+Interoperability Requirements:
+Browser Compatibility: System will be a web-based application, which shall operate on all major Internet browsers, including Google Chrome, Mozilla Firefox, Safari, and Microsoft Edge. 
+Computer and OS Compatibility: System will have interoperable features, allowing for cross-platform and OS compatibility.
+Expected Load:
+We will provision for as many Visitors and Users as possible, given our backend resources; presumably, this shall fall around the approximate mark of fifty (50) persons. 
+Security Requirements:
+Login/Password System: System shall possess a login/password authentication process. This implementation will also require a password confirmation upon creation. User will also create answers for Security Questions that shall be stored in the database. User will be able to retrieve their password by providing the answer to such questions.
+Encryption: The website will not provide any SSL/TLS encryption, as no transactions are being processed.
+Access Control: Users and Visitors will have limited access to the System based solely on the user interface.
+Spam Protection: The site will implement Captcha protections during the process to create an account, thereby preventing the creation of bogus accounts.
+Resource Utilization: Resources such as Firebase CDN shall be employed for backend design and hosting. The system will utilize Bootstrap and JavaScript/JQuery and will document proper licenses and/or qualifications of each.
+Portability Requirements:
+Platform Compatibility: The system shall function on all personal computers and platforms, including mobile devices such as smartphones or tablets.
+Supportability Requirements:
+Coding Standards: Our system will employ HTML5, CSS3, JavaScript, Firebase CDN version 8, and other such modern, up-to-date languages, codebases, and APIs.
+Naming Conventions: Standard programming language conventions shall be adhered to throughout the design and development process.
+Storage Requirements:
+Database: Our system shall primarily support the Firebase CDN Firestore database, and will utilize all available storage to the best of its capacities.
+
+Survivability and Availability:
+Cloud Storage Basis: System shall be entirely cloud based, so as to ensure high survivability, constant availability, and minimal downtime.
+Availability Requirements:
+Accessible Times: System shall be available for use 24/7/365.
+Downtime Impact: The downtime will be minimal. When necessary, a splash page will be used to identify such that System is in maintenance. 
+Support: Support shall be available by email. 
+Fault Tolerance:
+Exception Handling: There will be exception handling provided in all situations where an exception could occur. User will receive feedback with an explanation as to why exceptions have occurred. Steps to ameliorate such exceptions may be provided in the form of alerts or Bootstrap Modals.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+High-level System Architecture and Database Organization
+
+Firebase CDN: Firebase shall form the basis for NutriPlay’s Content Delivery Network (“CDN”), and will provide all database, authentication, security, logging, and other such measures and support tools.
+
+GitHub: GitHub will host the team collaborative repository, allowing for the developers to share, collaborate, and code together, whilst tracking all changes and providing history/backups.
+
+Google Docs: Google Docs is an online text editor that shall be used on an individual and collaborative basis to write some of the documentation for pre-processing and uploading to GitHub.
+
+Firebase Firestore: The Firebase Firestore shall provide the functionality otherwise traditionally implemented via MySQL. It shall form the basis of our backend design, and allow us to track, store, and monitor all data related to NutriPlay and its User base. User information is stored in a cloud firestore collection whose documents are organized by unique user UIDs. These user UIDs are created when a user signs up. Each document contains the user’s name, date of birth, and sex.
+
+Search/filter architecture and implementation:
+An EventListener checks for a click on the login button when the user attempts to login.
+If the email and password combination exists in the database the corresponding UID is searched for and retrieved. 
+An authenticator checks that the UID is verified and exists in the database. If it does exist, a welcome message is displayed to the user and the login is successful. If it does not exist, an error message is displayed to the user.
+Following a successful login, the user information associated with the user’s id (i.e., name, date-of-birth, and sex) are displayed on the screen.
+Visual Studio Code (Text Editor and Pseudo-IDE): Visual Studio Code shall be employed to create NutriPlay website and handle most of the front- and backend programming. Languages to be used for the development of the website will be the following
+HyperText Markup Language 5 (HTML5) - creates the physical website layout
+Cascading Style Sheets 3 (CSS3) - provides stylesheets and aesthetics for the website
+Personal Home Page (PHP) - used for server-side functionality, but mostly used via Firebase CDN
+JavaScript (JS) - integrated for client-side functionality purposes, so as to provide an enjoyable and interactive user experience enjoyable
+JQuery - employed in conjunction with JS
+Bootstrap - provides the framework for NutriPlay’s various web pages 
+Nutritionix API: The Nutritionix API will be used as the core basis NutriPlay, allowing for our NLP functionality, User data lookup, and the like. All nutritional information is garnered from said API’s massive database.
+
+Browser Compatibility:System shall function as a web application, which will operate on all major web browsers for mobile and desktop.
+
+
+
+DB organization: As noted above, Firebase shall form the basis for NutriPlay’s Content Delivery Network (“CDN”), and will provide all database, authentication, security, logging, and other such measures and support tools. The Firebase Firestore shall provide all database functionality and comprise the majority of the backend. This shall enable us to track, store, and monitor all data related to NutriPlay and its User base, specifically as pertains to Members and their Profiles. Member information is stored in a cloud Firestore collection whose documents are organized by unique user identification numbers (hereinafter “UID” or “UIDs”). These UIDs are created when a User signs up for Member status. The main “user” table contains each Member’s name, date of birth, and sex. Additional data shall be appended as functionality is built, just as additional linkages shall be established to other tables as Members are given unique EXP Bars, the search bars are separated into separate Exercise Pages and Food Pages, and the overall UI is revamped.
+User table in Firestore consists of a series of user objects. 
+Each user has a unique UID, corresponding with their email, name, date of birth, and sex. 
+Each UID has a sub-collection made up of the three aforementioned fields:
+dob: stores the user’s date-of-birth as a string in the format: year-month-day: “XXXX-XX-XX”
+name: stores the name of user as a string (e.g., “Bob”)
+sex: stores the gender of the user as a string (e.g., “Female”)
+Additional tables shall be added to carry user food, exercise, and other such data.
+
+
+Media Storage: Images and all audiovisual components shall result from API calls and will not be kept in the Firestore database. The Nutritionix API provides stock imagery and licensing for use of said images. Images are provided as .jpg files, and result as part of AJAX calls to the API; these AJAX results are returned as JSON objects and will thus be displayed to the User/Member.
+
+
+Search/filter architecture and implementation: All searches are to be conducted via AJAX calls to the Nutritionix API. There is no information stored in the Firestore database as relates to food; all information results from the Nutritionix API and is only stored in the Firestore database when and only when the Member logs their food. The information can be returned from the database and displayed upon such storage, as it is linked to the Member’s profile.
+
+
+Our APIs: Due to our reliance on the Nutritionix API, we need not build or deploy our own API. Any resources API-related are derived from our Hacker level License with Nutritionix.
+
+
+Non-Trivial Algorithms: We are planning on implementing a prioritization system whereby all foods and exercises will be sorted by calories upon storage; higher calorie items will be prioritized and therefore more likely to be deducted when the Member inputs exercises into their data log. The Firestore shall enable cross-referencing–upon retrieval–of all logged foods and exercises and shall deduct against the higher priority/calorie foods stored in the Member’s log.
+
+
+UML Diagrams
+All UML diagrams were crafted using “Lucidchart,” available at http://lucid.app. These represent the high-level views of NutriPlay and its current/planned implementation. All features are available to some degree in the vertical prototype, but not all functionality is guaranteed. API calls made to Nutritionix are conducted in the way displayed below, and are going to be implemented in the same/similar fashion in the final deployment of NutriPlay.
+
+UML Sequence Diagram:
+
+
+UML Class Diagram (High-Level):
+
+
+UML Component and Deployment Diagrams:
+
+
+
+Risk Analysis 
+	
+Skill Risks:
+
+Nearing the end of development we’ve had to assess our individual skills and what we can and cannot do. For the most part, we are all familiar with web-development and the creation of web-based applications. We all have a general background with basic HTML/CSS and javascript and were able to create a structural framework for our website. In addition, we were able to make use of the firebase firestore in order to log user information to a database such that users may set up a user profile with their personal information. We may not be able to develop a feature that rewards the user for meeting their individual caloric goals. Instead, we may have to limit this feature to rewarding messages that appear on screen to the user when they successfully meet a goal. 
+
+Schedule Risks:
+
+We believe we will be able to deliver a finished product with most of the proposed features by the end of development. Having a structural framework completed leaves only the population of different pages on NutriPlay (e.g., “Food”, “Exercise”, “About us”, etc.), a functioning navigation bar with links to the aforementioned pages, and a logging feature tied to individual users; such that users may log their food eaten or exercises completed for later reference. We may not be able to incorporate a feature based on our use-case wherein users are able to search for additional resources. We are not sure if it is feasible to develop such a feature using the IP address and or location of the user to suggest real-world resources. This feature may need to be scaled back such that only web-based resources are generated. 
+
+Technical Risks:
+
+The only technical risk we have at the moment is the method by which we will implement a food and exercise logging feature. We believe we will be able to generalize and reuse the structure of the login feature tied to the user-profile. However, we have not formalized how this will be done and may need to reassess our knowledge of firebase firestore in order to get it functioning properly. 
+
+Teamwork Risks:
+
+At the moment, there are no teamwork risks. We have been working cohesively as a unit and providing the utmost attention to this project. All members have been on time to meetings and we have greatly enjoyed working together, communicating effectively via Discord and holding multiple weekly meetings via Discord or other audiovisual services, as needed and as warranted.
+
+Legal/Content Risks:
+
+The following does not constitute a legal opinion, but rather an analysis conducted heretofore on the behalf of this group’s ambitions and projects. With regard to the largest issue, that is, the use of the Nutritionix API, the “Hacker” pricing plan is accompanied by terms and conditions that provide access to the Nutritionix API at no cost; pursuant to Section 15 of the aforementioned Terms and Conditions, proper attribution is paid to be paid to the Nutritionix parent company, whereby any website must state in writing, “Powered by Nutritionix.” Further, Section 2 specifically, expressly, and directly reserves “all content, documentation, code, data and related materials” made available through said API, insofar as Licensees are not provided any intellectual property rights or protections in any products via Nutritionix, nor may they claim any rights or interests in any intellectual property derived from the Nutritionix API. As we are not claiming any legal protections or any intellectual property interests in NutriPlay and its derivative code, we are certainly abiding by the aforesaid Terms and Conditions accompanying our License.
+
+The scope of Copyright Law in the United States is defined and limited by 17 U.S.C. § 102, which provides that Copyrightable material and the associated Copyright protections exist for “original works of authorship fixed in any tangible medium of expression, now known or later developed, from which they can be perceived, reproduced, or otherwise communicated, either directly or with the aid of a machine or device.” Pursuant to this statute and its functionality as the basis of Copyright law, it is fair to suggest that, based upon a slough of case law suggesting code is a “literary work,” our work might be protectable under 17 U.S.C. § 102(a)(1). That being said, we are not seeking to protect or enforce a Copyright interest in our work at this time, and have no such plans to register our works with the Copyright Office, so we may exert an unregistered Copyright interest in our work, but no more. We do not seek to litigate our interest, so this seems reasonable.
+
+Lastly, in analyzing whether NutriPlay might be Trademarkable, there exists no such Trademark actively–or inactively–registered in TESS, the United States Patent and Trademark Office’s Trademark Electronic Search System. To that end, we might be able to seek Trademark protection in NutriPlay, but since this is merely an educational product, we do not seek to do so and, in fact, would find it cumbersome and unnecessary to protect our interests in such manner at this time, as we are not corporatizing this product.
+
+Effectively, then, it is fair to say we are reasonably using the provided materials as part of the Nutritionix API. Google Firebase is similarly free to use, as is GitHub. There is no legal risk present or at hand that might present whereby we face litigation, but there is always room for protection; Trademark and Copyright protections are, as aforementioned, available, but might not be desirable, given the educational scope of this project.
+
+
+Exhibit 1a: TESS Search for Trademark:
+
+
+
+
+
+
+Exhibit 1b: TESS Results for “NutriPlay” (free-form search, design and word marks):
+
+
