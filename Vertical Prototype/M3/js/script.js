@@ -9,8 +9,8 @@ $(document).ready(function(){
     uif = $("#userInfoFields");
     epf = $("#emailPassFields");
     uif.hide();
-    $("#profileInfo").hide();
     supOpt.hide();
+    $("#profileInfo").hide();
 
     //Swap to sign up option
     //user will fill out their personal information first
@@ -155,5 +155,5 @@ $(document).ready(function(){
 
 const home = document.getElementById('homeButton');
 home.addEventListener('click', function() {
-  window.location.href = '..'
+  window.location.href = 'index.html'
 });
