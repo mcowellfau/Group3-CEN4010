@@ -125,6 +125,13 @@ function updateCaloriesProgressBar(calories) {
   else {
     $('#caloriesBar').removeClass('deficit');
   }
+  if (calories > maxCalories) {
+    deficitPercentage = Math.abs(calories / maxCalories) * 100;
+    $('#caloriesBar').addClass('full');
+  } 
+  else {
+    $('#caloriesBar').removeClass('full');
+  }
   // Calculate the remaining calories percentage
   var remainingPercentage = Math.max(0, (calories - minCalories) / maxCalories) * 100;
   // Update the main progress bar width
