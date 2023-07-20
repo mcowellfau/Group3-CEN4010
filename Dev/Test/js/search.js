@@ -1,48 +1,4 @@
-// Update the calories progress bar
-function updateCaloriesProgressBar(calories) {
-  var maxCalories = 2000; // Absolute max of the bar is 2000 calories
-  var minCalories = 0;
-  // Calculate the deficit percentage
-  var deficitPercentage = 0;
-  if (calories < minCalories) {
-    deficitPercentage = Math.abs(calories / maxCalories) * 100;
-    $('#caloriesBar').addClass('deficit');
-  } 
-  else {
-    $('#caloriesBar').removeClass('deficit');
-  }
-  if (calories > maxCalories) {
-    deficitPercentage = Math.abs(calories / maxCalories) * 100;
-    $('#caloriesBar').addClass('full');
-  } 
-  else {
-    $('#caloriesBar').removeClass('full');
-  }
-  // Calculate the remaining calories percentage
-  var remainingPercentage = Math.max(0, (calories - minCalories) / maxCalories) * 100;
-  // Update the main progress bar width
-  $('#caloriesBar').css('width', remainingPercentage + '%');
-  // Update the deficit bar width
-  $('#deficitBar').css('width', deficitPercentage + '%');
-  // Update the calories text
-  $('#caloriesText').text(calories.toFixed(2) + '/' + maxCalories);
-}
-
-function clearCaloriesBar() {
-  updateCaloriesProgressBar(0);
-  clearTables();
-  clearSearchBars();
-}
-
-function clearTables() {
-  $('#searchResults').empty();
-  $('#exerciseResults').empty();
-}
-
-function clearSearchBars() {
-  $('#searchInput').val('');
-  $('#exerciseInput').val('');
-}
+let maxCalories, exp;
 
 $(document).ready(function() {
   auth.onAuthStateChanged((user) => {
@@ -56,7 +12,9 @@ $(document).ready(function() {
           var dob = doc.data().dob;
           var sex = doc.data().sex;
           dob = new Date(dob.replaceAll("-", "\/"));
-          var exp = doc.data().exp;
+          maxCalories = doc.data().bmr;
+          exp = doc.data().exp;
+          initCaloriesProgressBar(exp, maxCalories);
           $('#loginFields').addClass('d-none');
           $('.member').removeClass('d-none'); // Show member-only links
           $('#logButton').click(function() {
@@ -67,6 +25,8 @@ $(document).ready(function() {
               exp: exp + caloriesToAdd
             })
             .then(function() {
+              exp += caloriesToAdd;
+              updateCaloriesProgressBar(exp);
               console.log('Calories logged successfully!');
               // You can add any additional actions here, such as displaying a success message to the user
             })
@@ -144,7 +104,7 @@ $(document).ready(function() {
             totals.Fat += food.nf_total_fat;
           });
 
-          updateCaloriesProgressBar(totals.Calories);
+          updateCaloriesProgressBar(totals.Calories + exp);
           // Round the total values to two decimals
           totals.Calories = totals.Calories.toFixed(2);
           totals.Protein = totals.Protein.toFixed(2);
@@ -181,6 +141,11 @@ $(document).ready(function() {
     $('#clearButton').click(function() {
       clearCaloriesBar();
     });
+
+    $('#resetEXP').click(function() {
+      resetEXP();
+    });
+
     $('#exerciseForm').submit(function(event) {
       event.preventDefault();
       var searchTerm = $('#exerciseInput').val();
@@ -223,7 +188,6 @@ $(document).ready(function() {
           // Subtract the burned calories from the total
           var currentCalories = parseFloat($('#caloriesText').text().split('/')[0]);
           var remainingCalories = currentCalories - totalBurnedCalories;
-          updateCaloriesProgressBar(remainingCalories);
           // Append the exercise table to the search results div
           $('#exerciseResults').append(exerciseTable);
         },
@@ -235,3 +199,95 @@ $(document).ready(function() {
     });
     
   });
+
+function initCaloriesProgressBar(exp, maxCalories) {
+  var minCalories = 0;
+  var deficitPercentage = 0;
+  if (exp < minCalories) {
+    deficitPercentage = Math.abs(exp / maxCalories) * 100;
+    $('#caloriesBar').addClass('deficit');
+  } 
+  else {
+    $('#caloriesBar').removeClass('deficit');
+  }
+  if (exp > maxCalories) {
+    deficitPercentage = Math.abs(calories / maxCalories) * 100;
+    $('#caloriesBar').addClass('full');
+  } 
+  else {
+    $('#caloriesBar').removeClass('full');
+  }
+  // Calculate the remaining calories percentage
+  var remainingPercentage = Math.max(0, (exp - minCalories) / maxCalories) * 100;
+  // Update the main progress bar width
+  $('#caloriesBar').css('width', remainingPercentage + '%');
+  // Update the deficit bar width
+  $('#deficitBar').css('width', deficitPercentage + '%');
+  // Update the calories text
+  $('#caloriesText').text(exp.toFixed(2) + '/' + maxCalories);
+}
+  // Update the calories progress bar
+function updateCaloriesProgressBar(calories) {
+  var minCalories = 0;
+  // Calculate the deficit percentage
+  var deficitPercentage = 0;
+  if (calories + exp < minCalories) {
+    deficitPercentage = Math.abs(calories / maxCalories) * 100;
+    $('#caloriesBar').addClass('deficit');
+  } 
+  else {
+    $('#caloriesBar').removeClass('deficit');
+  }
+  if (calories + exp > maxCalories) {
+    deficitPercentage = Math.abs(calories / maxCalories) * 100;
+    $('#caloriesBar').addClass('full');
+  } 
+  else {
+    $('#caloriesBar').removeClass('full');
+  }
+  // Calculate the remaining calories percentage
+  var remainingPercentage = Math.max(0, (calories - minCalories) / maxCalories) * 100;
+  // Update the main progress bar width
+  $('#caloriesBar').css('width', remainingPercentage + '%');
+  // Update the deficit bar width
+  $('#deficitBar').css('width', deficitPercentage + '%');
+  // Update the calories text
+  $('#caloriesText').text(calories.toFixed(2) + '/' + maxCalories);
+}
+
+function clearCaloriesBar() {
+  updateCaloriesProgressBar(exp);
+  clearTables();
+  clearSearchBars();
+}
+
+function resetEXP() {
+  exp = 0;
+  const user = auth.currentUser;
+  if (user) {
+    const userUID = user.uid;
+    db.collection("user").doc(userUID).update({
+      exp: 0
+    })
+    .then(function() {
+      // After updating the 'exp' field in Firestore, update the calories progress bar and clear the tables and search bars
+      updateCaloriesProgressBar(0);
+      clearTables();
+      clearSearchBars();
+      console.log('EXP reset successfully!');
+    })
+    .catch(function(error) {
+      console.error('Error resetting EXP: ', error);
+    });
+  }
+}
+
+function clearTables() {
+  $('#searchResults').empty();
+  $('#exerciseResults').empty();
+}
+
+function clearSearchBars() {
+  $('#searchInput').val('');
+  $('#exerciseInput').val('');
+}
