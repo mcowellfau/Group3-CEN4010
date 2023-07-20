@@ -2,7 +2,9 @@ $(document).ready(function () {
     var userPersInfo = {
         name: null,
         dob: null,
+        bmr: null,
         sex: null,
+        exp: null,
     };
     uif = $("#userInfoFields");
     epf = $("#emailPassFields");
@@ -11,11 +13,14 @@ $(document).ready(function () {
         event.preventDefault();
         var name = $("#name").val();
         var dob = $("#dob").val();
+        var bmr = $("#bmr").val();
         var sex = $("#sex").find(":selected").val();
         //Storing user info into userPersInfo
         userPersInfo.name = name;
         userPersInfo.dob = dob;
+        userPersInfo.bmr = bmr;
         userPersInfo.sex = sex;
+        userPersInfo.exp = 0;
         console.log("User Info:", userPersInfo);
         //revealing email and password fields, hiding info fields
         uif.addClass("d-none");
@@ -64,7 +69,9 @@ $(document).ready(function () {
         db.collection("user").doc(userUID).set({
             name: userPersInfo.name,
             dob: userPersInfo.dob,
+            bmr: userPersInfo.bmr,
             sex: userPersInfo.sex,
+            exp: userPersInfo.exp,
         }).then(() => {
             console.log("Successfully set user info");
             window.location.href="home.html";
