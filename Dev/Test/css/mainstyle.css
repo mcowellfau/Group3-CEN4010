@@ -1,0 +1,15 @@
+.pagepart {
+    text-align: center;
+    margin: 0 auto;
+}
+.fieldpart {
+    width: 500px;
+    text-align: center;
+    margin: 0 auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+form>div {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}

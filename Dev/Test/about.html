@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>NutriPlay</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" type="image/x-icon" href="images/NutriPlay4.png">
+        <!--For bootstrap-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+        <!--custom stylesheet-->
+        <link rel="stylesheet" href="css/mainstyle.css">
+    </head>
+    <body>
+        <!--Navigation bar-->
+        <nav class="navbar navbar-expand bg-success" data-bs-theme="dark">
+            <div class="container-fluid">
+                <!--Brand logo and name-->
+                <a class="navbar-brand" href="index.html">
+                    <img class="d-inline-block align-text-top" width="30" height="30" src="images/NutriPlay4.png">
+                    NutriPlay
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <!--Navigation links-->
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link member d-none" href="home.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="search.html">Food/Exercise</a>
+                        </li>
+                        <li class="nav-item member d-none">
+                            <a class="nav-link" href="profile.html">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="about.html">About</a>
+                        </li>
+                    </ul>
+                </div>
+                <!--Login Form-->
+                <form class="d-flex d-none" data-bs-theme="light" id="loginFields">
+                    <input class="form-control form-control-sm" type="email" id="email" placeholder="email" required>
+                    <input class="form-control form-control-sm" type="password" id="password" placeholder="password" required>
+                    <button id="login" class="btn btn-sm btn-success">Login</button>
+                </form>
+                <!--Logout-->
+                <div class="d-none" id="logoutBtn">
+                    <button id="signout" class="btn btn-success">Log Out</button>
+                </div>
+            </div>
+        </nav>
+
+        <div class="pagepart">
+            <p>This is the about page</p>
+        </div>
+
+        <script src="" async defer></script>
+        <!--For bootstrap-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+        <!--For JQuery-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <!--For Firebase-->
+        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+        <script src="js/config.js"></script>
+        <!--For Login and Signup and logout-->
+        <script src="js/login_signup.js"></script>
+        <!--Because accessible by both members and nonmembers-->
+        <script src="js/member.js"></script>
+    </body>
+</html>
