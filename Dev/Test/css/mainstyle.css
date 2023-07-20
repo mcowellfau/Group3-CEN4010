@@ -288,7 +288,7 @@ html {
 }
 
 .button:hover {
-  background-color: #555;
+  background-color: black;
 }
 
 @media screen and (max-width: 650px) {
