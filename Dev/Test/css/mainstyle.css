@@ -194,3 +194,8 @@ form>div {
   .container{
     text-align: center;
   }
+
+  .table-container {
+    max-width: 800px; /* Adjust the width to your desired value */
+    margin: 0 auto; /* Center the table within the container */
+  }
