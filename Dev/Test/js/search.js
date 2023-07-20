@@ -263,9 +263,23 @@ function clearCaloriesBar() {
 
 function resetEXP() {
   exp = 0;
-  updateCaloriesProgressBar(0);
-  clearTables();
-  clearSearchBars();
+  const user = auth.currentUser;
+  if (user) {
+    const userUID = user.uid;
+    db.collection("user").doc(userUID).update({
+      exp: 0
+    })
+    .then(function() {
+      // After updating the 'exp' field in Firestore, update the calories progress bar and clear the tables and search bars
+      updateCaloriesProgressBar(0);
+      clearTables();
+      clearSearchBars();
+      console.log('EXP reset successfully!');
+    })
+    .catch(function(error) {
+      console.error('Error resetting EXP: ', error);
+    });
+  }
 }
 
 function clearTables() {
