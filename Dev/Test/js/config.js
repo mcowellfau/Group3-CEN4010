@@ -1,13 +1,13 @@
 //Practice project for now
 const firebaseConfig = {
-    apiKey: "AIzaSyDATD73-A2tiJhKJOeUmDWKzGs2_u49AEM",
-    authDomain: "testuserlogin-ae95e.firebaseapp.com",
-    projectId: "testuserlogin-ae95e",
-    storageBucket: "testuserlogin-ae95e.appspot.com",
-    messagingSenderId: "742536000422",
-    appId: "1:742536000422:web:6bbb36b37913e1bf8a1567",
-    measurementId: "G-KZBMH76HQJ"
-  };
+  apiKey: "AIzaSyBG8PGhE4UyVkhDtRoCFX3DFstBzBrnFjo",
+  authDomain: "nutriplay-b404b.firebaseapp.com",
+  projectId: "nutriplay-b404b",
+  storageBucket: "nutriplay-b404b.appspot.com",
+  messagingSenderId: "518981118424",
+  appId: "1:518981118424:web:15e3ef7cd14b47c24f6aad",
+  measurementId: "G-1QT3GFN7BX"
+};
 
   firebase.initializeApp(firebaseConfig);
   const auth = firebase.auth();
