@@ -231,14 +231,14 @@ function updateCaloriesProgressBar(calories) {
   var minCalories = 0;
   // Calculate the deficit percentage
   var deficitPercentage = 0;
-  if (calories + exp < minCalories) {
+  if (calories < minCalories) {
     deficitPercentage = Math.abs(calories / maxCalories) * 100;
     $('#caloriesBar').addClass('deficit');
   } 
   else {
     $('#caloriesBar').removeClass('deficit');
   }
-  if (calories + exp > maxCalories) {
+  if (calories > maxCalories) {
     deficitPercentage = Math.abs(calories / maxCalories) * 100;
     $('#caloriesBar').addClass('full');
   } 
