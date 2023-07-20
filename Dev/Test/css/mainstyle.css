@@ -1,6 +1,9 @@
 .pagepart {
     text-align: center;
     margin: 0 auto;
+    width: 60%;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 .fieldpart {
     width: 500px;
