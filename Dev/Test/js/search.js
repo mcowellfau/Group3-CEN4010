@@ -49,39 +49,38 @@ $(document).ready(function() {
     if (user) {
       const userUID = user.uid;
       //get user info
-        db.collection("user").doc(userUID).get().then((doc) => {
-            if (doc.exists) {
-                console.log("User Data:", doc.data());
-                var name = doc.data().name;
-                var dob = doc.data().dob;
-                var sex = doc.data().sex;
-                dob = new Date(dob.replaceAll("-", "\/"));
-                var exp = doc.data().exp;
-                $('#loginFields').addClass('d-none');
-                $('.member').removeClass('d-none'); // Show member-only links
-                $('#logButton').click(function() {
-                  var currentCalories = parseFloat($('#caloriesText').text().split('/')[0]);
-                  var userUID = user.uid; // Replace this with the actual UID of the logged-in user
-                  var totalCaloriesToLog = currentCalories; // Modify this if you want to log a different value
-                  // Update the user's 'exp' field in Firestore with the total calories to log
-                  db.collection("user").doc(userUID).update({
-                    exp: totalCaloriesToLog
-                  })
-                  .then(function() {
-                    console.log('Total calories logged successfully!');
-                    // You can add any additional actions here, such as displaying a success message to the user
-                  })
-                  .catch(function(error) {
-                    console.error('Error logging total calories: ', error);
-                    // You can handle errors here, such as displaying an error message to the user
-                  });
+      db.collection("user").doc(userUID).get().then((doc) => {
+        if (doc.exists) {
+          console.log("User Data:", doc.data());
+          var name = doc.data().name;
+          var dob = doc.data().dob;
+          var sex = doc.data().sex;
+          dob = new Date(dob.replaceAll("-", "\/"));
+          var exp = doc.data().exp;
+          $('#loginFields').addClass('d-none');
+          $('.member').removeClass('d-none'); // Show member-only links
+          $('#logButton').click(function() {
+            var currentCalories = parseFloat($('#caloriesText').text().split('/')[0]);
+            var caloriesToAdd = currentCalories; // Modify this if you want to log a different value
+            // Update the user's 'exp' field in Firestore by adding the new calories
+            db.collection("user").doc(userUID).update({
+              exp: exp + caloriesToAdd
+            })
+            .then(function() {
+              console.log('Calories logged successfully!');
+              // You can add any additional actions here, such as displaying a success message to the user
+            })
+            .catch(function(error) {
+              console.error('Error logging calories: ', error);
+              // You can handle errors here, such as displaying an error message to the user
+            });
           });
-      } else {
-        $('#loginFields').removeClass('d-none');
-        $('.member').addClass('d-none'); // Hide member-only links
-      }
-    })
-  }
+        } else {
+          $('#loginFields').removeClass('d-none');
+          $('.member').addClass('d-none'); // Hide member-only links
+        }
+      })
+    }
   });
 
   $('#searchForm').submit(function(event) {
