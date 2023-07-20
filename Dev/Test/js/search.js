@@ -1,4 +1,4 @@
-let maxCalories, exp;
+let maxCalories, exp, caloriesToAdd, currentCalories = 0;
 
 $(document).ready(function() {
   auth.onAuthStateChanged((user) => {
@@ -26,6 +26,9 @@ $(document).ready(function() {
             })
             .then(function() {
               exp += caloriesToAdd;
+              caloriesToAdd = 0;
+              currentCalories = 0;
+              console.log("CALS TO ADD:", caloriesToAdd);
               updateCaloriesProgressBar(exp);
               console.log('Calories logged successfully!');
               // You can add any additional actions here, such as displaying a success message to the user
@@ -211,7 +214,7 @@ function initCaloriesProgressBar(exp, maxCalories) {
     $('#caloriesBar').removeClass('deficit');
   }
   if (exp > maxCalories) {
-    deficitPercentage = Math.abs(calories / maxCalories) * 100;
+    deficitPercentage = Math.abs(exp / maxCalories) * 100;
     $('#caloriesBar').addClass('full');
   } 
   else {
@@ -256,6 +259,7 @@ function updateCaloriesProgressBar(calories) {
 }
 
 function clearCaloriesBar() {
+  caloriesToAdd = 0;
   updateCaloriesProgressBar(exp);
   clearTables();
   clearSearchBars();
