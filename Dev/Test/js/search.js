@@ -1,5 +1,90 @@
+// Update the calories progress bar
+function updateCaloriesProgressBar(calories) {
+  var maxCalories = 2000; // Absolute max of the bar is 2000 calories
+  var minCalories = 0;
+  // Calculate the deficit percentage
+  var deficitPercentage = 0;
+  if (calories < minCalories) {
+    deficitPercentage = Math.abs(calories / maxCalories) * 100;
+    $('#caloriesBar').addClass('deficit');
+  } 
+  else {
+    $('#caloriesBar').removeClass('deficit');
+  }
+  if (calories > maxCalories) {
+    deficitPercentage = Math.abs(calories / maxCalories) * 100;
+    $('#caloriesBar').addClass('full');
+  } 
+  else {
+    $('#caloriesBar').removeClass('full');
+  }
+  // Calculate the remaining calories percentage
+  var remainingPercentage = Math.max(0, (calories - minCalories) / maxCalories) * 100;
+  // Update the main progress bar width
+  $('#caloriesBar').css('width', remainingPercentage + '%');
+  // Update the deficit bar width
+  $('#deficitBar').css('width', deficitPercentage + '%');
+  // Update the calories text
+  $('#caloriesText').text(calories.toFixed(2) + '/' + maxCalories);
+}
+
+function clearCaloriesBar() {
+  updateCaloriesProgressBar(0);
+  clearTables();
+  clearSearchBars();
+}
+
+function clearTables() {
+  $('#searchResults').empty();
+  $('#exerciseResults').empty();
+}
+
+function clearSearchBars() {
+  $('#searchInput').val('');
+  $('#exerciseInput').val('');
+}
+
 $(document).ready(function() {
-    $('#searchForm').submit(function(event) {
+  auth.onAuthStateChanged((user) => {
+    if (user) {
+      const userUID = user.uid;
+      //get user info
+        db.collection("user").doc(userUID).get().then((doc) => {
+            if (doc.exists) {
+                console.log("User Data:", doc.data());
+                var name = doc.data().name;
+                var dob = doc.data().dob;
+                var sex = doc.data().sex;
+                dob = new Date(dob.replaceAll("-", "\/"));
+                var exp = doc.data().exp;
+                $('#loginFields').addClass('d-none');
+                $('.member').removeClass('d-none'); // Show member-only links
+                $('#logButton').click(function() {
+                  var currentCalories = parseFloat($('#caloriesText').text().split('/')[0]);
+                  var userUID = user.uid; // Replace this with the actual UID of the logged-in user
+                  var totalCaloriesToLog = currentCalories; // Modify this if you want to log a different value
+                  // Update the user's 'exp' field in Firestore with the total calories to log
+                  db.collection("user").doc(userUID).update({
+                    exp: totalCaloriesToLog
+                  })
+                  .then(function() {
+                    console.log('Total calories logged successfully!');
+                    // You can add any additional actions here, such as displaying a success message to the user
+                  })
+                  .catch(function(error) {
+                    console.error('Error logging total calories: ', error);
+                    // You can handle errors here, such as displaying an error message to the user
+                  });
+          });
+      } else {
+        $('#loginFields').removeClass('d-none');
+        $('.member').addClass('d-none'); // Hide member-only links
+      }
+    })
+  }
+  });
+
+  $('#searchForm').submit(function(event) {
       event.preventDefault();
       var searchTerm = $('#searchInput').val();
       $.ajax({
@@ -97,109 +182,57 @@ $(document).ready(function() {
     $('#clearButton').click(function() {
       clearCaloriesBar();
     });
-    function clearCaloriesBar() {
-      updateCaloriesProgressBar(0);
-      clearTables();
-      clearSearchBars();
-    }
-    function clearTables() {
-      $('#searchResults').empty();
-      $('#exerciseResults').empty();
-    }
-    function clearSearchBars() {
-      $('#searchInput').val('');
-      $('#exerciseInput').val('');
-    }
-  });
+    $('#exerciseForm').submit(function(event) {
+      event.preventDefault();
+      var searchTerm = $('#exerciseInput').val();
+      $.ajax({
+        url: 'https://trackapi.nutritionix.com/v2/natural/exercise',
+        type: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-app-id': '829b344f',
+          'x-app-key': 'fc998f3f193cf70fcf5964765bfe50e8',
+        },
+        data: JSON.stringify({
+          query: searchTerm,
+        }),
+        success: function(exerciseResponse) {
+          // Clear previous search results
+          $('#exerciseResults').empty();
   
-// Update the calories progress bar
-function updateCaloriesProgressBar(calories) {
-  var maxCalories = 2000; // Absolute max of the bar is 2000 calories
-  var minCalories = 0;
-  // Calculate the deficit percentage
-  var deficitPercentage = 0;
-  if (calories < minCalories) {
-    deficitPercentage = Math.abs(calories / maxCalories) * 100;
-    $('#caloriesBar').addClass('deficit');
-  } 
-  else {
-    $('#caloriesBar').removeClass('deficit');
-  }
-  if (calories > maxCalories) {
-    deficitPercentage = Math.abs(calories / maxCalories) * 100;
-    $('#caloriesBar').addClass('full');
-  } 
-  else {
-    $('#caloriesBar').removeClass('full');
-  }
-  // Calculate the remaining calories percentage
-  var remainingPercentage = Math.max(0, (calories - minCalories) / maxCalories) * 100;
-  // Update the main progress bar width
-  $('#caloriesBar').css('width', remainingPercentage + '%');
-  // Update the deficit bar width
-  $('#deficitBar').css('width', deficitPercentage + '%');
-  // Update the calories text
-  $('#caloriesText').text(calories.toFixed(2) + '/' + maxCalories);
-}
-
-
-
-$(document).ready(function() {
-  $('#exerciseForm').submit(function(event) {
-    event.preventDefault();
-    var searchTerm = $('#exerciseInput').val();
-    $.ajax({
-      url: 'https://trackapi.nutritionix.com/v2/natural/exercise',
-      type: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-app-id': '829b344f',
-        'x-app-key': 'fc998f3f193cf70fcf5964765bfe50e8',
-      },
-      data: JSON.stringify({
-        query: searchTerm,
-      }),
-      success: function(exerciseResponse) {
-        // Clear previous search results
-        $('#exerciseResults').empty();
-
-        // Create a table for exercise items
-        var exerciseTable = $('<table>').addClass('searchTable');
-        // Create and append table headers
-        var exerciseHeaders = ['Exercise', 'Duration (min)', 'Calories Burned'];
-        var exerciseHeaderRow = $('<tr>');
-        exerciseHeaders.forEach(function(header) {
-          exerciseHeaderRow.append($('<th>').text(header));
-        });
-        exerciseTable.append(exerciseHeaderRow);
-        // Calculate the total burned calories
-        var totalBurnedCalories = 0;
-        // Iterate through each exercise item and create table rows
-        exerciseResponse.exercises.forEach(function(exercise) {
-          var row = $('<tr>');
-          row.append($('<td>').text(exercise.name));
-          row.append($('<td>').text(exercise.duration_min));
-          row.append($('<td>').text(exercise.nf_calories));
-          exerciseTable.append(row);
-          // Update the total burned calories
-          totalBurnedCalories += exercise.nf_calories;
-        });
-        // Subtract the burned calories from the total
-        var currentCalories = parseFloat($('#caloriesText').text().split('/')[0]);
-        var remainingCalories = currentCalories - totalBurnedCalories;
-        updateCaloriesProgressBar(remainingCalories);
-        // Append the exercise table to the search results div
-        $('#exerciseResults').append(exerciseTable);
-      },
-      error: function(xhr, status, error) {
-        console.error('Error:', error);
-        alert('Exercise not found!');
-      },
+          // Create a table for exercise items
+          var exerciseTable = $('<table>').addClass('searchTable');
+          // Create and append table headers
+          var exerciseHeaders = ['Exercise', 'Duration (min)', 'Calories Burned'];
+          var exerciseHeaderRow = $('<tr>');
+          exerciseHeaders.forEach(function(header) {
+            exerciseHeaderRow.append($('<th>').text(header));
+          });
+          exerciseTable.append(exerciseHeaderRow);
+          // Calculate the total burned calories
+          var totalBurnedCalories = 0;
+          // Iterate through each exercise item and create table rows
+          exerciseResponse.exercises.forEach(function(exercise) {
+            var row = $('<tr>');
+            row.append($('<td>').text(exercise.name));
+            row.append($('<td>').text(exercise.duration_min));
+            row.append($('<td>').text(exercise.nf_calories));
+            exerciseTable.append(row);
+            // Update the total burned calories
+            totalBurnedCalories += exercise.nf_calories;
+          });
+          // Subtract the burned calories from the total
+          var currentCalories = parseFloat($('#caloriesText').text().split('/')[0]);
+          var remainingCalories = currentCalories - totalBurnedCalories;
+          updateCaloriesProgressBar(remainingCalories);
+          // Append the exercise table to the search results div
+          $('#exerciseResults').append(exerciseTable);
+        },
+        error: function(xhr, status, error) {
+          console.error('Error:', error);
+          alert('Exercise not found!');
+        },
+      });
     });
+    
   });
-});
-
-const loginSignup = document.getElementById('loginsignup');
-loginSignup.addEventListener('click', function() {
-  window.location.href = 'login_signup.html'
-});
