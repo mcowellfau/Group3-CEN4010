@@ -8,11 +8,13 @@ $(document).ready(function(){
                     console.log("User Data:", doc.data());
                     var name = doc.data().name;
                     var dob = doc.data().dob;
+                    var bmr = doc.data().bmr;
                     var sex = doc.data().sex;
                     dob = new Date(dob.replaceAll("-", "\/"));
                     $("#userDisplay").html("<td>" + name + "'s Profile</td>");
                     $("#nameDisplay").html("<td>Name:</td>" + "<td>" + name + "</td>");
                     $("#dobDisplay").html("<td>Date of Birth:</td>" + "<td>" + dob.toLocaleDateString() + "</td>");
+                    $("#bmrDisplay").html("<td>BMR:</td>" + "<td>" + bmr + " calories per day</td>");
                     $("#sexDisplay").html("<td>Sex:</td>" + "<td>" + sex + "</td>");
                 }
             })
