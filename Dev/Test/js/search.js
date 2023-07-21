@@ -1,4 +1,4 @@
-let maxCalories, exp, currentCalories = 0;
+let maxCalories, exp, currentCalories, totalBurnedCalories = 0;
 let isLogged = false;
 
 $(document).ready(function() {
@@ -181,7 +181,9 @@ $(document).ready(function() {
         success: function(exerciseResponse) {
           // Clear previous search results
           $('#exerciseResults').empty();
-  
+          console.log("Exercise Search Found!");
+          $("#logButton").removeClass("d-none");
+          
           // Create a table for exercise items
           var exerciseTable = $('<table>').addClass('searchTable');
           // Create and append table headers
@@ -192,7 +194,7 @@ $(document).ready(function() {
           });
           exerciseTable.append(exerciseHeaderRow);
           // Calculate the total burned calories
-          var totalBurnedCalories = 0;
+          totalBurnedCalories = 0;
           // Iterate through each exercise item and create table rows
           exerciseResponse.exercises.forEach(function(exercise) {
             var row = $('<tr>');
@@ -202,10 +204,12 @@ $(document).ready(function() {
             exerciseTable.append(row);
             // Update the total burned calories
             totalBurnedCalories += exercise.nf_calories;
+            console.log('calories is: ', totalBurnedCalories)
           });
           // Subtract the burned calories from the total
            currentCalories = parseFloat($('#caloriesText').text().split('/')[0]);
            remainingCalories = currentCalories - totalBurnedCalories;
+           updateCaloriesProgressBar(remainingCalories);
           // Append the exercise table to the search results div
           $('#exerciseResults').append(exerciseTable);
         },
@@ -250,7 +254,7 @@ function updateCaloriesProgressBar(calories) {
   // Calculate the deficit percentage
   var deficitPercentage = 0;
   if (calories < minCalories) {
-    deficitPercentage = Math.abs(calories / maxCalories) * 100;
+    deficitPercentage = Math.abs((calories - minCalories) / maxCalories) * 100;
     $('#caloriesBar').addClass('deficit');
   } 
   else {
