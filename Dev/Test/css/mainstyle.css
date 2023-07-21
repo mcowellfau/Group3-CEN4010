@@ -240,14 +240,12 @@ html {
 
 .column {
   float: left;
-  width: 33.3%;
+  width: 20%;
   margin-bottom: 16px;
- /* padding: 0 8px;*/
+  padding: 0 8px;
 }
 
-/*.column2 {
-  
-}*/
+
 
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
