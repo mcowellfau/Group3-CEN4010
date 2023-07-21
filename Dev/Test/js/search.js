@@ -1,4 +1,4 @@
-let maxCalories, exp, currentCalories, totalBurnedCalories = 0;
+let maxCalories, exp, currentCalories, totalBurnedCalories, newTotal, globalCals = 0;
 let isLogged = false;
 
 $(document).ready(function() {
@@ -118,7 +118,8 @@ $(document).ready(function() {
           //console.clear();
           console.log("totals.calories:", totals.Calories);
           console.log("exp:", exp);
-          var newTotal = totals.Calories + exp;
+          newTotal = totals.Calories + exp;
+          globalCals = totals.Calories;
           console.log("newTotal:", newTotal);
           updateCaloriesProgressBar(newTotal);
           // Round the total values to two decimals
@@ -282,15 +283,16 @@ function clearCaloriesBar() {
   if(!isLogged){
     clearTables();
     clearSearchBars();
-    //updateCaloriesProgressBar(exp);
-    newTotal = 0;
+    newTotal -= globalCals;
+    console.log ('newTotal is now, ', newTotal);
     console.log('Assuming true initially, isLogged is currently: ', isLogged);
   } else {
     clearTables();
     clearSearchBars();
     console.log('Assuming false initially, isLogged is currently: ', isLogged);
   }
-  isLogged = false;    
+  isLogged = false;
+  location.reload();    
 }
 
 function resetEXP() {
