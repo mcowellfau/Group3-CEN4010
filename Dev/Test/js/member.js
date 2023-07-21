@@ -18,7 +18,7 @@ $(document).ready(function(){
             
         } else {
             //no user is logged in or user signed out
-            $("[href='search.html']").prop("href", "search_nonmember");
+            $("[href='search.html']").prop("href", "search_nonmember.html");
             console.log("no user is logged in")
             $("#loginFields").removeClass("d-none");
             console.log("member links hidden");
