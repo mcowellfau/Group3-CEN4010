@@ -21,7 +21,7 @@ $(document).ready(function() {
             exp += currentCalories;
             // Update the user's 'exp' field in Firestore by adding the new calories
             db.collection("user").doc(userUID).update({
-              exp: exp
+              exp: currentCalories
             })
             .then(function() {
               // TEST    --- Seeing cals to add before added
