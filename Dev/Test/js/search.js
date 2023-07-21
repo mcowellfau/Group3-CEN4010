@@ -18,13 +18,14 @@ $(document).ready(function() {
             currentCalories = parseFloat($('#caloriesText').text().split('/')[0]);
             console.log('current cals is ', currentCalories);
             console.log('exp is before update ',exp);
+            exp += currentCalories;
             // Update the user's 'exp' field in Firestore by adding the new calories
             db.collection("user").doc(userUID).update({
               exp: exp
             })
             .then(function() {
               // TEST    --- Seeing cals to add before added
-              exp += currentCalories;
+              
               console.log("CALS TO ADD BEFORE ADDED AND CLEARED:", currentCalories);              
               console.log('exp is now ', exp);
               updateCaloriesProgressBar(currentCalories);
