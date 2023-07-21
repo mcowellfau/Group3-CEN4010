@@ -1,7 +1,6 @@
 .pagepart {
-    text-align: center;
-    margin: 0 auto;
-    width: 60%;
+    margin: auto;
+    width: 50%;
     padding-top: 10px;
     padding-bottom: 10px;
 }
@@ -12,7 +11,7 @@
     padding-top: 10px;
     padding-bottom: 10px;
 }
-form>div {
+.modal-body>div, form>div {
     padding-top: 10px;
     padding-bottom: 10px;
 }
