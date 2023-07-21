@@ -1,0 +1,109 @@
+SW Engineering Summer 2023
+[FAU: CEN 4010]
+
+
+
+
+Milestone 4 Document
+Project Proposal: NutriPlay
+
+
+Group: 3
+Trello Board: https://trello.com/b/q4dWpcj3/nutriplay-checklist
+GitHub Repo: https://github.com/mcowellfau/Group3-CEN4010
+
+
+Scrum Master, Frontend Developer: Danny Ruiz
+Frontend Developer: Yolanda Vega
+Backend and Frontend (Hybrid) Developers: Matthew Cowell, William Gardner
+Product Owner, Backend Developer: Josh Young
+
+
+
+Milestone 4
+Date: 25 July 2023
+Revision History:  // add revision history table as we go
+
+
+
+TABLE OF CONTENTS // Needs to change afterwards 
+	
+
+	
+
+	Executive Summary ………………………..
+	2
+	Competitive Analysis …………………………………
+	4
+	Data Definitions …………………………………
+	11
+	Overview, scenarios and use cases …………………………………
+	16
+	High-level functional requirements …………………………………
+	20
+	List of non-functional requirements …………………………………
+	24
+	High-Level System Architecture and Database Organization…………………
+	27
+	High-Level UML diagrams …………………………………
+	30
+	 Risk Analysis …………………………………
+	33
+
+   2.2 Product Summary:
+
+    Nutriplay......
+    //List of all major committed functions
+    //describe unique features 
+    //URl to Nutriplay
+
+    2.3 Usability test plan
+
+// Select ONE major function (NOT login or registration) to be tested for usability. We
+recommend search or upload/post.
+Write a usability test plan for this selected function. Please consult class material on
+developing usability test plan and questionnaire. This test plan is to contain
+
+        // Test objective
+        //Test plan
+        //Questionnaire form: 3 Lickert scale questions, in a form easy to be used by
+        reviewer (check class slides). 
+
+
+    2.4 QA Test plan
+    //a) Create formal QA test plan (consult QA class material). Basically, it has to contain
+        1) Test objectives: max 0.5 pages
+        2) Hardware and software setup: max 0.5 page
+        3) Feature to be tested: max 0.5 page
+        4) Actual test cases: 3 test cases and results of testing them on your system //
+        
+Suggested format for QA Table columns are: test #; test title; test description; test
+input; expected correct output; test results (PASS or FAIL for each tested browser)
+        5) Perform the testing as per plan above and record the results in a form above.
+        6) Apply the above test on 2 browsers of different type and record it in the above table
+
+    2.5 Code Review
+   1) One team member should submit code to other team member(s) for peer review.
+   2) Peer review should be performed by other group member(s) (1 review is OK).
+   3) Peer review is to be done by e-mail and comments are to be included in the code
+   4) Submit listing containing the peer review and commented code and communication related to this in your Milestone 4 document
+
+//Important: It is critical that code reviews are friendly and helpful, intended to help
+and education, and not to criticize. It is strongly suggested that you use peer review
+in the development of the whole system.
+
+2.6 self check on best practices for security
+
+1) List major assets you are protecting
+2) Confirm that you encrypt password in the DB
+3) Confirm Input data validation (list what is being validated and what code you 
+    used) – we request that you validate search bar input
+
+
+2.7 Self check: Adherence to original Non functional specs
+
+//Copy all original non-functional specs as in high level application document
+published at the very beginning of the class and then for each say DONE if it is done
+(which is expected and required); ON TRACK if it is in the process of being done and
+you are sure it will be completed on time; or ISSUE meaning you have some
+problems and then explain it.
