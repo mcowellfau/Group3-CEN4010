@@ -238,6 +238,7 @@ html {
   box-sizing: inherit;
 }
 
+/*This section for the info cards*/
 .column {
   float: left;
   width: 33.3%;
@@ -250,6 +251,8 @@ html {
   margin: 8px;
 }
 
+
+/*Ignore this section*/
 .about-section {
   padding: 50px;
   text-align: center;
