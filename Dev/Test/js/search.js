@@ -260,6 +260,7 @@ function updateCaloriesProgressBar(calories) {
 
 function clearCaloriesBar() {
   caloriesToAdd = 0;
+  currentCalories = 0;
   updateCaloriesProgressBar(exp);
   clearTables();
   clearSearchBars();
