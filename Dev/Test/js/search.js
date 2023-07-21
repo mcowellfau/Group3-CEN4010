@@ -282,7 +282,7 @@ function clearCaloriesBar() {
   if(!isLogged){
     clearTables();
     clearSearchBars();
-    updateCaloriesProgressBar(exp);
+    //updateCaloriesProgressBar(exp);
     newTotal = 0;
     console.log('Assuming true initially, isLogged is currently: ', isLogged);
   } else {
