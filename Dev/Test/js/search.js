@@ -1,4 +1,5 @@
 let maxCalories, exp, currentCalories = 0;
+let isLogged = false;
 
 $(document).ready(function() {
   auth.onAuthStateChanged((user) => {
@@ -15,19 +16,23 @@ $(document).ready(function() {
           //TEST   $('.member').removeClass('d-none'); // Show member-only links
           $('#logButton').click(function() {
             currentCalories = parseFloat($('#caloriesText').text().split('/')[0]);
+            console.log('current cals is ', currentCalories);
+            console.log('exp is before update ',exp);
             // Update the user's 'exp' field in Firestore by adding the new calories
             db.collection("user").doc(userUID).update({
-              exp: exp + currentCalories
+              exp: exp
             })
             .then(function() {
               // TEST    --- Seeing cals to add before added
-              console.log("CALS TO ADD BEFORE ADDED AND CLEARED:", currentCalories);
-              updateCaloriesProgressBar(currentCalories);
               exp += currentCalories;
-              currentCalories = 0;
-              console.log("CALS TO ADD:", currentCalories);
+              console.log("CALS TO ADD BEFORE ADDED AND CLEARED:", currentCalories);              
+              console.log('exp is now ', exp);
+              updateCaloriesProgressBar(currentCalories);
               console.log('Calories logged successfully!');
+              //currentCalories = 0;
+              console.log('Current Calories is now: ', currentCalories);
               $("#logButton").addClass("d-none");
+              isLogged = true;
               // You can add any additional actions here, such as displaying a success message to the user
             })
             .catch(function(error) {
@@ -51,8 +56,8 @@ $(document).ready(function() {
         type: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'x-app-id': '829b344f',
-          'x-app-key': 'fc998f3f193cf70fcf5964765bfe50e8',
+          'x-app-id': 'fa05f1e2',
+          'x-app-key': '11c5ca881ed9dde7c9647dda9d61d436',
         },
         data: JSON.stringify({
           query: searchTerm,
@@ -109,8 +114,12 @@ $(document).ready(function() {
             totals.Carbs += food.nf_total_carbohydrate;
             totals.Fat += food.nf_total_fat;
           });
-
-          updateCaloriesProgressBar(totals.Calories + exp);
+          //console.clear();
+          console.log("totals.calories:", totals.Calories);
+          console.log("exp:", exp);
+          var newTotal = totals.Calories + exp;
+          console.log("newTotal:", newTotal);
+          updateCaloriesProgressBar(newTotal);
           // Round the total values to two decimals
           totals.Calories = totals.Calories.toFixed(2);
           totals.Protein = totals.Protein.toFixed(2);
@@ -149,7 +158,6 @@ $(document).ready(function() {
       //TEST -- hide log button once search is cleared
       //        so user can't log a food that's been cleared
       $("#logButton").addClass("d-none")
-      currentCalories = 0;
     });
 
     $('#resetEXP').click(function() {
@@ -164,8 +172,8 @@ $(document).ready(function() {
         type: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'x-app-id': '829b344f',
-          'x-app-key': 'fc998f3f193cf70fcf5964765bfe50e8',
+          'x-app-id': 'fa05f1e2',
+          'x-app-key': '11c5ca881ed9dde7c9647dda9d61d436',
         },
         data: JSON.stringify({
           query: searchTerm,
@@ -196,8 +204,8 @@ $(document).ready(function() {
             totalBurnedCalories += exercise.nf_calories;
           });
           // Subtract the burned calories from the total
-          var currentCalories = parseFloat($('#caloriesText').text().split('/')[0]);
-          var remainingCalories = currentCalories - totalBurnedCalories;
+           currentCalories = parseFloat($('#caloriesText').text().split('/')[0]);
+           remainingCalories = currentCalories - totalBurnedCalories;
           // Append the exercise table to the search results div
           $('#exerciseResults').append(exerciseTable);
         },
@@ -266,9 +274,18 @@ function updateCaloriesProgressBar(calories) {
 }
 
 function clearCaloriesBar() {
-  currentCalories = 0;
-  clearTables();
-  clearSearchBars();
+  if(!isLogged){
+    clearTables();
+    clearSearchBars();
+    updateCaloriesProgressBar(exp);
+    newTotal = 0;
+    console.log('Assuming true initially, isLogged is currently: ', isLogged);
+  } else {
+    clearTables();
+    clearSearchBars();
+    console.log('Assuming false initially, isLogged is currently: ', isLogged);
+  }
+  isLogged = false;    
 }
 
 function resetEXP() {
