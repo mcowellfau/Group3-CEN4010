@@ -1,5 +1,6 @@
 .pagepart {
-    margin: auto;
+    margin: 0 auto;
+    text-align: center;
     width: 50%;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -12,6 +13,12 @@
     padding-bottom: 10px;
 }
 .modal-body>div, form>div {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+#userInfoDisplay {
+    margin: 0 auto;
+    width: 50%;
     padding-top: 10px;
     padding-bottom: 10px;
 }

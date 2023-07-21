@@ -8,15 +8,16 @@ $(document).ready(function() {
       db.collection("user").doc(userUID).get().then((doc) => {
         if (doc.exists) {
           console.log("User Data:", doc.data());
-          var name = doc.data().name;
-          var dob = doc.data().dob;
-          var sex = doc.data().sex;
-          dob = new Date(dob.replaceAll("-", "\/"));
+          //TEST ----- Don't need this for now
+          // var name = doc.data().name;
+          // var dob = doc.data().dob;
+          // var sex = doc.data().sex;
+          // dob = new Date(dob.replaceAll("-", "\/"));
           maxCalories = doc.data().bmr;
           exp = doc.data().exp;
           initCaloriesProgressBar(exp, maxCalories);
-          $('#loginFields').addClass('d-none');
-          $('.member').removeClass('d-none'); // Show member-only links
+          //TEST   $('#loginFields').addClass('d-none');
+          //TEST   $('.member').removeClass('d-none'); // Show member-only links
           $('#logButton').click(function() {
             var currentCalories = parseFloat($('#caloriesText').text().split('/')[0]);
             var caloriesToAdd = currentCalories; // Modify this if you want to log a different value
@@ -25,6 +26,9 @@ $(document).ready(function() {
               exp: exp + caloriesToAdd
             })
             .then(function() {
+              // TEST    --- Seeing cals to add before added
+              console.log("CALS TO ADD BEFORE ADDED AND CLEARED:", caloriesToAdd);
+
               exp += caloriesToAdd;
               caloriesToAdd = 0;
               currentCalories = 0;
@@ -61,6 +65,12 @@ $(document).ready(function() {
           query: searchTerm,
         }),
         success: function(response) {
+
+          // TEST    --- successfully found search result
+          //             showing log button for user to log food
+          console.log("Food Search Found!");
+          $("#logButton").removeClass("d-none");
+
           // Clear previous search results
           $('#searchResults').empty();
   
@@ -143,6 +153,9 @@ $(document).ready(function() {
     });
     $('#clearButton').click(function() {
       clearCaloriesBar();
+      //TEST -- hide log button once search is cleared
+      //        so user can't log a food that's been cleared
+      $("#logButton").addClass("d-none")
     });
 
     $('#resetEXP').click(function() {
@@ -200,7 +213,7 @@ $(document).ready(function() {
         },
       });
     });
-    
+
   });
 
 function initCaloriesProgressBar(exp, maxCalories) {
