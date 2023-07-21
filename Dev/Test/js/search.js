@@ -1,4 +1,4 @@
-let maxCalories, exp, caloriesToAdd, currentCalories = 0;
+let maxCalories, exp, currentCalories = 0;
 
 $(document).ready(function() {
   auth.onAuthStateChanged((user) => {
@@ -8,33 +8,26 @@ $(document).ready(function() {
       db.collection("user").doc(userUID).get().then((doc) => {
         if (doc.exists) {
           console.log("User Data:", doc.data());
-          //TEST ----- Don't need this for now
-          // var name = doc.data().name;
-          // var dob = doc.data().dob;
-          // var sex = doc.data().sex;
-          // dob = new Date(dob.replaceAll("-", "\/"));
           maxCalories = doc.data().bmr;
           exp = doc.data().exp;
           initCaloriesProgressBar(exp, maxCalories);
           //TEST   $('#loginFields').addClass('d-none');
           //TEST   $('.member').removeClass('d-none'); // Show member-only links
           $('#logButton').click(function() {
-            var currentCalories = parseFloat($('#caloriesText').text().split('/')[0]);
-            var caloriesToAdd = currentCalories; // Modify this if you want to log a different value
+            currentCalories = parseFloat($('#caloriesText').text().split('/')[0]);
             // Update the user's 'exp' field in Firestore by adding the new calories
             db.collection("user").doc(userUID).update({
-              exp: exp + caloriesToAdd
+              exp: exp + currentCalories
             })
             .then(function() {
               // TEST    --- Seeing cals to add before added
-              console.log("CALS TO ADD BEFORE ADDED AND CLEARED:", caloriesToAdd);
-
-              exp += caloriesToAdd;
-              caloriesToAdd = 0;
+              console.log("CALS TO ADD BEFORE ADDED AND CLEARED:", currentCalories);
+              updateCaloriesProgressBar(currentCalories);
+              exp += currentCalories;
               currentCalories = 0;
-              console.log("CALS TO ADD:", caloriesToAdd);
-              updateCaloriesProgressBar(exp);
+              console.log("CALS TO ADD:", currentCalories);
               console.log('Calories logged successfully!');
+              $("#logButton").addClass("d-none");
               // You can add any additional actions here, such as displaying a success message to the user
             })
             .catch(function(error) {
@@ -156,6 +149,7 @@ $(document).ready(function() {
       //TEST -- hide log button once search is cleared
       //        so user can't log a food that's been cleared
       $("#logButton").addClass("d-none")
+      currentCalories = 0;
     });
 
     $('#resetEXP').click(function() {
@@ -272,9 +266,7 @@ function updateCaloriesProgressBar(calories) {
 }
 
 function clearCaloriesBar() {
-  caloriesToAdd = 0;
   currentCalories = 0;
-  updateCaloriesProgressBar(exp);
   clearTables();
   clearSearchBars();
 }
