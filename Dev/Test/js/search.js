@@ -1,7 +1,10 @@
+//Global variables for tracking additional calories, experience/cals.
 let maxCalories, exp, currentCalories, totalBurnedCalories, newTotal, globalCals = 0;
+//Global flag for whether data is logged, used for reset.
 let isLogged = false;
 
 $(document).ready(function() {
+  //checking if user is authenticated w/ firebase
   auth.onAuthStateChanged((user) => {
     if (user) {
       const userUID = user.uid;
@@ -10,11 +13,12 @@ $(document).ready(function() {
         if (doc.exists) {
           console.log("User Data:", doc.data());
           maxCalories = doc.data().bmr;
-          exp = doc.data().exp;
+          exp = doc.data().exp; //retrieve exp val
           initCaloriesProgressBar(exp, maxCalories);
           //TEST   $('#loginFields').addClass('d-none');
           //TEST   $('.member').removeClass('d-none'); // Show member-only links
           $('#logButton').click(function() {
+            //calculate and log current calories
             currentCalories = parseFloat($('#caloriesText').text().split('/')[0]);
             console.log('current cals is ', currentCalories);
             console.log('exp is before update ',exp);
@@ -34,11 +38,11 @@ $(document).ready(function() {
               console.log('Current Calories is now: ', currentCalories);
               $("#logButton").addClass("d-none");
               isLogged = true;
-              // You can add any additional actions here, such as displaying a success message to the user
+              // Might want to add a success message to the user?
             })
             .catch(function(error) {
               console.error('Error logging calories: ', error);
-              // You can handle errors here, such as displaying an error message to the user
+              // Do we need additional error handling or modals?
             });
           });
         } else {
@@ -48,7 +52,7 @@ $(document).ready(function() {
       })
     }
   });
-
+  //The following the AJAX request to the API.
   $('#searchForm').submit(function(event) {
       event.preventDefault();
       var searchTerm = $('#searchInput').val();
@@ -92,7 +96,7 @@ $(document).ready(function() {
             Fat: 0,
           };
   
-          // Iterate through each food item and create table rows
+          // Iterate through each food item and create table rows w/ data from API
           response.foods.forEach(function(food) {
             var row = $('<tr>');
             row.append($('<td>').text(food.food_name));
@@ -102,14 +106,14 @@ $(document).ready(function() {
             row.append($('<td>').text(food.nf_total_carbohydrate));
             row.append($('<td>').text(food.nf_total_fat));
   
-            // Create an image cell
+            // Create an image cell in table for the food photo thumbnail
             var imageCell = $('<td>');
             var foodImage = food.photo.thumb;
             var $image = $('<img>').attr('src', foodImage);
             imageCell.append($image);
             row.append(imageCell);
             foodTable.append(row);
-            // Update the totals
+            // Update the totals based on retrieved data
             totals.Calories += food.nf_calories;
             totals.Protein += food.nf_protein;
             totals.Carbs += food.nf_total_carbohydrate;
@@ -121,7 +125,7 @@ $(document).ready(function() {
           newTotal = totals.Calories + exp;
           globalCals = totals.Calories;
           console.log("newTotal:", newTotal);
-          updateCaloriesProgressBar(newTotal);
+          updateCaloriesProgressBar(newTotal); //Reflect the new value in the exp bar
           // Round the total values to two decimals
           totals.Calories = totals.Calories.toFixed(2);
           totals.Protein = totals.Protein.toFixed(2);
@@ -151,7 +155,7 @@ $(document).ready(function() {
         },
         error: function(xhr, status, error) {
           console.error('Error:', error);
-          alert('Food not found!');
+          alert('Food not found!'); //Error handling if food not found. Maybe a modal in final prod?
         },
       });
     });
@@ -163,9 +167,9 @@ $(document).ready(function() {
     });
 
     $('#resetEXP').click(function() {
-      resetEXP();
+      resetEXP(); //Call reset function on reset press
     });
-
+    //The following is a call for exercise results.
     $('#exerciseForm').submit(function(event) {
       event.preventDefault();
       var searchTerm = $('#exerciseInput').val();
@@ -211,19 +215,20 @@ $(document).ready(function() {
           // Subtract the burned calories from the total
            currentCalories = parseFloat($('#caloriesText').text().split('/')[0]);
            remainingCalories = currentCalories - totalBurnedCalories;
-           updateCaloriesProgressBar(remainingCalories);
+           updateCaloriesProgressBar(remainingCalories); //Update the exp bar with the burned cals
           // Append the exercise table to the search results div
           $('#exerciseResults').append(exerciseTable);
         },
         error: function(xhr, status, error) {
           console.error('Error:', error);
-          alert('Exercise not found!');
+          alert('Exercise not found!'); //Error handling in case of exercise input issue
         },
       });
     });
 
   });
 
+  //The following function initializes the exp bar w/ the user's BMR and current exp
 function initCaloriesProgressBar(exp, maxCalories) {
   var minCalories = 0;
   var deficitPercentage = 0;
@@ -279,6 +284,7 @@ function updateCaloriesProgressBar(calories) {
   $('#caloriesText').text(calories.toFixed(2) + '/' + maxCalories);
 }
 
+//Reload the page on whether or not food/exercise logged, and log or clear based on press.
 function clearCaloriesBar() {
   if(!isLogged){
     clearTables();
@@ -295,6 +301,7 @@ function clearCaloriesBar() {
   location.reload();    
 }
 
+//wipe exp from firestore and replace with 0.
 function resetEXP() {
   exp = 0;
   const user = auth.currentUser;
@@ -304,7 +311,7 @@ function resetEXP() {
       exp: 0
     })
     .then(function() {
-      // After updating the 'exp' field in Firestore, update the calories progress bar and clear the tables and search bars
+      // After updating the 'exp' field in Firestore, update the exp bar to 0 and clear the tables and search bars
       updateCaloriesProgressBar(0);
       clearTables();
       clearSearchBars();
