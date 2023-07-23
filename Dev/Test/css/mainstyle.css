@@ -240,41 +240,23 @@ html {
 
 .column {
   float: left;
-  width: 20%;
+  width: 33.3%;
   margin-bottom: 16px;
   padding: 0 8px;
 }
 
-
-
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  height:200px;
-  width: 300px;
-  margin: 8px auto;
-}
-.card-bottom {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  justify-items: center;
+  margin: 8px;
 }
 
 .about-section {
   padding: 50px;
   text-align: center;
-  background-color: #ccc;
+  background-color: #474e5d;
   color: white;
 }
 
-/*
-.about-section {
-  margin-top: 25px;
-  margin-bottom: 25 px;
-  margin-right: 25 px;
-  margin-left: 25;
-  text-align: center;
-  background-color:#198754;
-}
-*/
 .container {
   padding: 0 16px;
 }
@@ -295,14 +277,14 @@ html {
   display: inline-block;
   padding: 8px;
   color: white;
-  background-color: #198754;
+  background-color: #000;
   text-align: center;
   cursor: pointer;
   width: 100%;
 }
 
 .button:hover {
-  background-color: black;
+  background-color: #555;
 }
 
 @media screen and (max-width: 650px) {
