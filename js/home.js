@@ -14,7 +14,7 @@ $(document).ready(function() {
             console.log("Last food is ", lastFood);
             maxCalText = parseFloat($('#caloriesText').text().split('/')[0]);
             $('#caloriesText').text(exp.toFixed(2) + '/' + maxCalories);
-            
+            if(lastFood.food_name != null) {
             // Create and append the food table inside the promise callback
             var foodTable = $('<table>').addClass('searchTable');
             var headers = ['Food', 'Serving Size', 'Calories', 'Protein', 'Carbs', 'Fat', 'Image'];
@@ -40,6 +40,7 @@ $(document).ready(function() {
             $('#lastFood').append(foodTable);
             updateCaloriesProgressBar(exp);
           }
+        }
 
           function updateCaloriesProgressBar(calories) {
             var minCalories = 0;

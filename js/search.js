@@ -60,16 +60,16 @@ $('#searchForm').submit(function(event) {
       };
 
       // Assuming the logged food data is available in the 'response' object, update the loggedFood.
-      loggedFood = {
-        food_name: response.foods[0].food_name,
-        serving_qty: response.foods[0].serving_qty,
-        serving_unit: response.foods[0].serving_unit,
-        nf_calories: response.foods[0].nf_calories,
-        nf_protein: response.foods[0].nf_protein,
-        nf_total_carbohydrate: response.foods[0].nf_total_carbohydrate,
-        nf_total_fat: response.foods[0].nf_total_fat,
-        photo: response.foods[0].photo.thumb
-      };
+        loggedFood = {
+          food_name: response.foods[0].food_name,
+          serving_qty: response.foods[0].serving_qty,
+          serving_unit: response.foods[0].serving_unit,
+          nf_calories: response.foods[0].nf_calories,
+          nf_protein: response.foods[0].nf_protein,
+          nf_total_carbohydrate: response.foods[0].nf_total_carbohydrate,
+          nf_total_fat: response.foods[0].nf_total_fat,
+          photo: response.foods[0].photo.thumb
+        };
 
       // Iterate through each food item and create table rows w/ data from API
       response.foods.forEach(function(food) {
@@ -146,6 +146,7 @@ $(document).ready(function() {
           console.log("User Data:", doc.data());
           maxCalories = doc.data().bmr;
           exp = doc.data().exp; //retrieve exp val
+          lastFood = doc.data().loggedFood;
           initCaloriesProgressBar(exp, maxCalories);
           //TEST   $('#loginFields').addClass('d-none');
           //TEST   $('.member').removeClass('d-none'); // Show member-only links
@@ -156,29 +157,52 @@ $(document).ready(function() {
             console.log('exp is before update ',exp);
             exp += currentCalories;
             // Update the user's 'exp' field in Firestore by adding the new calories
-            db.collection("user").doc(userUID).update({
-              exp: currentCalories,
-              lastFood: loggedFood,
-            })
-            .then(function() {
-              // TEST    --- Seeing cals to add before added
-              
-              console.log("CALS TO ADD BEFORE ADDED AND CLEARED:", currentCalories);              
-              console.log('exp is now ', exp);
-              updateCaloriesProgressBar(currentCalories);
-              console.log('Calories logged successfully!');
-              //currentCalories = 0;
-              console.log('Current Calories is now: ', currentCalories);
-              console.log('Last food is ', loggedFood);
-              $("#logButton").addClass("d-none");
-              isLogged = true;
-              // Might want to add a success message to the user?
-            })
-            .catch(function(error) {
-              console.error('Error logging calories: ', error);
-              // Do we need additional error handling or modals?
-            });
+            if (loggedFood.food_name != null) {
+              db.collection("user").doc(userUID).update({
+                  lastFood: loggedFood,
+                  exp: currentCalories
+              }).then(function() {
+                // TEST    --- Seeing cals to add before added
+                
+                console.log("CALS TO ADD BEFORE ADDED AND CLEARED:", currentCalories);              
+                console.log('exp is now ', exp);
+                updateCaloriesProgressBar(currentCalories);
+                console.log('Calories logged successfully!');
+                //currentCalories = 0;
+                console.log('Current Calories is now: ', currentCalories);
+                console.log('Last food is ', loggedFood);
+                $("#logButton").addClass("d-none");
+                isLogged = true;
+                // Might want to add a success message to the user?
+              })
+              .catch(function(error) {
+                console.error('Error logging calories: ', error);
+                // Do we need additional error handling or modals?
+              });
+            } else {
+              db.collection("user").doc(userUID).update({
+                exp: currentCalories,
+              }).then(function() {
+                // TEST    --- Seeing cals to add before added
+                
+                console.log("CALS TO ADD BEFORE ADDED AND CLEARED:", currentCalories);              
+                console.log('exp is now ', exp);
+                updateCaloriesProgressBar(currentCalories);
+                console.log('Calories logged successfully!');
+                //currentCalories = 0;
+                console.log('Current Calories is now: ', currentCalories);
+                console.log('Last food is ', loggedFood);
+                $("#logButton").addClass("d-none");
+                isLogged = true;
+                // Might want to add a success message to the user?
+              })
+              .catch(function(error) {
+                console.error('Error logging calories: ', error);
+                // Do we need additional error handling or modals?
+              });
+            }
           });
+          
         } else {
           $('#loginFields').removeClass('d-none');
           $('.member').addClass('d-none'); // Hide member-only links
