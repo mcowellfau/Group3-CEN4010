@@ -22,7 +22,7 @@ $(document).ready(function () {
         userPersInfo.bmr = bmr;
         userPersInfo.sex = sex;
         userPersInfo.exp = 0;
-        userPersInfo.lastFood = food;
+        userPersInfo.lastFood = null;
         console.log("User Info:", userPersInfo);
         //revealing email and password fields, hiding info fields
         uif.addClass("d-none");
