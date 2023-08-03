@@ -103,6 +103,9 @@ $(document).ready(function(){
                                     displayUserInfo(doc.data(), user)
                                 }
                             })
+                            //Make edit account fields default
+                            $("#email").val(user.email);
+                            $("#password, .passField>input").val("");
                             //Hide modal when done
                             $("#editAccountModal").modal("hide");
                         }).catch((error) => {
@@ -120,6 +123,9 @@ $(document).ready(function(){
                         user.reauthenticateWithCredential(credential).then(() => {
                             user.updatePassword(newPass).then(() => {
                                 console.log("User password updated successfully");
+                                //Make edit account fields default
+                                $("#email").val(user.email);
+                                $("#password, .passField>input").val("");
                                 //hide modal when done
                                 $("#editAccountModal").modal("hide");
                             }).catch((error) =>{
