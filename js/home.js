@@ -12,6 +12,8 @@ $(document).ready(function() {
             var lastFood = doc.data().lastFood;
             var maxCalories = doc.data().bmr;
             console.log("Last food is ", lastFood);
+            maxCalText = parseFloat($('#caloriesText').text().split('/')[0]);
+            $('#caloriesText').text(exp.toFixed(2) + '/' + maxCalories);
             
             // Create and append the food table inside the promise callback
             var foodTable = $('<table>').addClass('searchTable');
@@ -32,7 +34,8 @@ $(document).ready(function() {
             row.append($('<td>').text(lastFood.nf_total_fat));
             row.append($('<td>').append($('<img>').attr('src', lastFood.photo)));
             foodTable.append(row);
-  
+
+            location.reload();  
             // Append the food table to the #lastFood div
             $('#lastFood').append(foodTable);
             initCaloriesProgressBar(exp, maxCalories);
