@@ -22,6 +22,17 @@
     padding-top: 10px;
     padding-bottom: 10px;
 }
+.modalText {
+  margin: 0 auto;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+#clickToEditEmail:hover, #clickToEditPass:hover {
+    color: #146c43;
+    text-decoration: underline;
+    cursor: pointer;
+}
 
 /* CSS for the table */
 .searchTable {

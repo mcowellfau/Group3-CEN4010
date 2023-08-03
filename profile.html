@@ -63,6 +63,10 @@
                     <td class="w-25"></td>
                     <td></td>
                 </tr>
+                <tr id="emailDisplay">
+                    <td class="w-25"></td>
+                    <td></td>
+                </tr>
                 <tr id="dobDisplay">
                     <td class="w-25"></td>
                     <td></td>
@@ -79,7 +83,7 @@
         </table>
 
         <div class="pagepart">
-            
+            <button class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#editAccountModal" id="editAccountBtn">Edit Account</button>
         </div>
         <div class="pagepart">
             <button class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#editProfileModal" id="editProfileBtn">Edit Profile</button>
@@ -91,7 +95,7 @@
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Profile</h1>
                     </div>
-                    <form id="editForm">
+                    <form id="editProfileForm">
                         <div class="modal-body">
                             <div class="form-floating">
                                 <input type="text" id="name" placeholder="name" class="form-control" required>
@@ -114,8 +118,49 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" id="cancelEdit">Cancel</button>
+                            <button type="button" class="btn btn-secondary" id="cancelProfileEdit">Cancel</button>
                             <button type="submit" class="btn btn-primary" id="saveEditChanges">Save changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!--Edit Account Modal-->
+        <div id="editAccountModal" class="modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Account Information</h1>
+                    </div>
+                    <form id="editAccountForm">
+                        <div class="modal-body">
+                            <!--Fields-->
+                            <div class="form-floating emailField">
+                                <input type="email" id="email" placeholder="email" class="form-control" required>
+                                <label for="email">Email:</label>
+                            </div>
+                            <div class="form-floating">
+                                <input type="password" id="password" placeholder="password" class="form-control" required>
+                                <label for="password">Current Password:</label>
+                            </div>
+                            <div class="form-floating passField d-none">
+                                <input type="password" id="newPassword" placeholder="password" class="form-control">
+                                <label for="newPassword">New Password:</label>
+                            </div>
+                            <div class="form-floating passField d-none">
+                                <input type="password" id="confirmNewPassword" placeholder="password" class="form-control">
+                                <label for="confirmNewPassword">Confirm New Password:</label>
+                                <span id="warnMsg"></span>
+                            </div>
+                            <!--Select Change email or password-->
+                            <div class="modalText">
+                                <p id="clickToEditEmail" class="text-success d-none">Change Email</p>
+                                <p id="clickToEditPass" class="text-success">Change Password</p>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" id="cancelAccountEdit">Cancel</button>
+                            <button type="submit" class="btn btn-primary" id="saveAccountEditChanges">Save changes</button>
                         </div>
                     </form>
                 </div>
