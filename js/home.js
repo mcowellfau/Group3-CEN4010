@@ -35,7 +35,7 @@ $(document).ready(function() {
             row.append($('<td>').append($('<img>').attr('src', lastFood.photo)));
             foodTable.append(row);
 
-            location.reload();  
+            //location.reload();  
             // Append the food table to the #lastFood div
             $('#lastFood').append(foodTable);
             initCaloriesProgressBar(exp, maxCalories);
