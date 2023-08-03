@@ -72,6 +72,7 @@ $(document).ready(function () {
             bmr: userPersInfo.bmr,
             sex: userPersInfo.sex,
             exp: userPersInfo.exp,
+            lastFood: userPersInfo.lastFood,
         }).then(() => {
             console.log("Successfully set user info");
             window.location.href="home.html";
