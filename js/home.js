@@ -38,7 +38,6 @@ $(document).ready(function() {
             //location.reload();  
             // Append the food table to the #lastFood div
             $('#lastFood').append(foodTable);
-            initCaloriesProgressBar(exp, maxCalories);
             updateCaloriesProgressBar(exp);
           }
 
@@ -69,34 +68,6 @@ $(document).ready(function() {
             // Update the calories text
             $('#caloriesText').text(calories.toFixed(2) + '/' + maxCalories);
           }
-
-          function initCaloriesProgressBar(exp, maxCalories) {
-            var minCalories = 0;
-            var deficitPercentage = 0;
-            if (exp < minCalories) {
-              deficitPercentage = Math.abs(exp / maxCalories) * 100;
-              $('#caloriesBar').addClass('deficit');
-            } 
-            else {
-              $('#caloriesBar').removeClass('deficit');
-            }
-            if (exp > maxCalories) {
-              deficitPercentage = Math.abs(exp / maxCalories) * 100;
-              $('#caloriesBar').addClass('full');
-            } 
-            else {
-              $('#caloriesBar').removeClass('full');
-            }
-            // Calculate the remaining calories percentage
-            var remainingPercentage = Math.max(0, (exp - minCalories) / maxCalories) * 100;
-            // Update the main progress bar width
-            $('#caloriesBar').css('width', remainingPercentage + '%');
-            // Update the deficit bar width
-            $('#deficitBar').css('width', deficitPercentage + '%');
-            // Update the calories text
-            $('#caloriesText').text(exp.toFixed(2) + '/' + maxCalories);
-          }
-
         });
       }
     });
