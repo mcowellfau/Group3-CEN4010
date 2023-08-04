@@ -14,7 +14,11 @@ $(document).ready(function() {
             console.log("Last food is ", lastFood);
             maxCalText = parseFloat($('#caloriesText').text().split('/')[0]);
             $('#caloriesText').text(exp.toFixed(2) + '/' + maxCalories);
-            if(lastFood.food_name != null) {
+            if (lastFood === null) {
+              console.log("Food div hidden!");
+              $("#food").addClass("d-none");
+            } else if(lastFood.food_name != null) {
+              $("#food").removeClass("d-none");
             // Create and append the food table inside the promise callback
             var foodTable = $('<table>').addClass('searchTable');
             var headers = ['Food', 'Serving Size', 'Calories', 'Protein', 'Carbs', 'Fat', 'Image'];
@@ -39,7 +43,7 @@ $(document).ready(function() {
             // Append the food table to the #lastFood div
             $('#lastFood').append(foodTable);
             updateCaloriesProgressBar(exp);
-          }
+          } 
         }
 
           function updateCaloriesProgressBar(calories) {
@@ -74,3 +78,21 @@ $(document).ready(function() {
     });
   });
   
+  var category = 'inspirational'
+  $.ajax({
+      method: 'GET',
+      url: 'https://api.api-ninjas.com/v1/quotes?category=' + category,
+      headers: { 'X-Api-Key': 'GFxm+zjH+0w+yZfzHvHUtQ==h34benjHLc5JEoes'},
+      contentType: 'application/json',
+      success: function(result) {
+        var randomIndex = Math.floor(Math.random() * result.length);
+        var randomQuote = result[randomIndex].quote;
+        var authorName = result[randomIndex].author;
+
+        // Insert the quote into the target div
+        $('#quote').html('<h3>' + "\"" + randomQuote + "\"" + "-" + authorName + '</h3>');
+      },
+      error: function ajaxError(jqXHR) {
+          console.error('Error: ', jqXHR.responseText);
+      }
+  });
