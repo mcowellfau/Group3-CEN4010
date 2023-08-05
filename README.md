@@ -29,3 +29,7 @@ All other planned implementation remains consistent with M1 and M2, but the M3 D
 Beta of product has been delivered. Most functionality is present in some form, and the Beta
 is accessible at https://mcowellfau.github.io/Group3-CEN4010/. Logging of calories is now fully
 functional, and Member/User functionality works and has been separated/discretized.
+
+# Readme Information For Milestone 5
+
+Final delivery of product. Most features have been implemented as planned, and a few extras are included. All features and implementation is documented in the associated documentation, and all features that could not be implemented are likewise documented. Please see https://mcowellfau.github.io/Group3-CEN4010/ for our project.
